@@ -9,6 +9,10 @@
 ## App
 An app is a program to be deployed.
 
+### Properties
+* id
+* name
+
 ### GET /apps
 List existing apps.
 

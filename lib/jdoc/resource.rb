@@ -35,12 +35,17 @@ module Jdoc
       @schema.title
     end
 
-    # To guarantee uniqueness in Hash key
+    # @return [Hash]
+    def properties
+      @schema.properties
+    end
+
+    # Defined to change uniqueness in Hash key
     def hash
       @schema.hash
     end
 
-    # To guarantee uniqueness in Hash key
+    # Defined to change uniqueness in Hash key
     def eql?(other)
       @schema.eql?(other.schema)
     end

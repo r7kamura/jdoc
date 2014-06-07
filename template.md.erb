@@ -10,6 +10,11 @@
 ## <%= resource.title %>
 <%= resource.description %>
 
+### Properties
+<% resource.properties.each do |name, property| %>
+* <%= name %>
+<% end %>
+
 <% links.each do |link| %>
 ### <%= link.endpoint %>
 <%= link.description %>
