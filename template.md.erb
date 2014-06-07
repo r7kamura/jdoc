@@ -14,4 +14,11 @@ Host: api.example.com
 <%= "\n" + link.request_body if link.has_request_body? -%>
 ```
 
+```
+HTTP/1.1 <%= link.response_status %>
+Content-Type: application/json
+
+<%= link.response_body %>
+```
+
 <% end %>

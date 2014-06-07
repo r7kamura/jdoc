@@ -67,11 +67,28 @@ module Jdoc
       MultiJson.encode(RequestBodyGenerator.call(schema), pretty: true) + "\n"
     end
 
+    # @return [true, false] True if this endpoint must have request body
     def has_request_body?
       ["PATCH", "POST", "PUT"].include?(method)
     end
 
+    # @return [String] JSON response body generated from example properties
+    def response_body
+      MultiJson.encode(response_hash, pretty: true)
+    end
+
+    # @return [Fixnum] Preferred respone status code for this endpoint
+    def response_status
+      method == "POST" ? 201 : 200
+    end
+
     private
+
+    # @return [Hash]
+    # @raise [Rack::Spec::Mock::ExampleNotFound]
+    def response_hash
+      Rack::Spec::Mock::ResponseGenerator.call(schema)
+    end
 
     # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
     def schema
