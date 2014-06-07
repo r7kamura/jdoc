@@ -10,6 +10,11 @@ module Jdoc
       @links ||= rack_schema.links.map {|link| Link.new(link: link) }.sort
     end
 
+    # @return [String, nil] Title property of this schema
+    def title
+      @raw_schema["title"]
+    end
+
     private
 
     # @return [Rack::Spec::Schema]
