@@ -6,6 +6,7 @@ require "rack/spec"
 
 require "jdoc/generator"
 require "jdoc/link"
+require "jdoc/property"
 require "jdoc/resource"
 require "jdoc/schema"
 require "jdoc/version"

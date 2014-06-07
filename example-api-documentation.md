@@ -10,8 +10,15 @@
 An app is a program to be deployed.
 
 ### Properties
-* id
-* name
+* id - unique identifier of app
+ * Example: `01234567-89ab-cdef-0123-456789abcdef`
+ * Type: string
+ * Format: uuid
+ * ReadOnly: true
+* name - unique name of app
+ * Example: `example`
+ * Type: string
+ * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
 
 ### GET /apps
 List existing apps.

@@ -11,8 +11,11 @@
 <%= resource.description %>
 
 ### Properties
-<% resource.properties.each do |name, property| %>
-* <%= name %>
+<% resource.properties.each do |property| %>
+* <%= property.name %> - <%= property.description %>
+<% property.options.each do |key, value| %>
+ * <%= key %>: <%= value %>
+<% end %>
 <% end %>
 
 <% links.each do |link| %>

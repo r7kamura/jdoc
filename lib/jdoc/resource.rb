@@ -35,9 +35,11 @@ module Jdoc
       @schema.title
     end
 
-    # @return [Hash]
+    # @return [Array<Jdoc::Property>]
     def properties
-      @schema.properties
+      @schema.properties.map do |name, schema|
+        Property.new(name: name, schema: schema)
+      end
     end
 
     # Defined to change uniqueness in Hash key
