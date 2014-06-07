@@ -1,8 +1,16 @@
 module Jdoc
   class Schema
+    # Recursively extracts all links in given JSON schema
+    # @param json_schema [JsonSchema::Schema]
+    # @return [Array] An array of JsonSchema::Schema::Link
+    def self.extract_links(json_schema)
+      links = json_schema.links.select {|link| link.method && link.href }
+      links + json_schema.properties.map {|key, schema| extract_links(schema) }.flatten
+    end
+
     # @param schema [Hash] JSON Schema
     def initialize(schema)
-      @raw_schema = schema
+      @json_schema = JsonSchema.parse!(schema).tap(&:expand_references!)
     end
 
     # @return [Hash{Jdoc::Schema => Array}] Linkes table indexed by their schemata
@@ -17,19 +25,18 @@ module Jdoc
     # @example
     #   schema.title #=> "app"
     def title
-      @raw_schema["title"]
+      @json_schema.title
     end
 
     private
 
-    # @return [Array<Jdoc::Schema::Link>] Sorted links
+    # @return [Array] All links defined in given JSON schema
+    # @example
+    #   schema.links #=> [#<JsonSchema::Schema::Link>]
     def links
-      rack_schema.links.map {|link| Link.new(link: link) }.sort
-    end
-
-    # @return [Rack::Spec::Schema]
-    def rack_schema
-      @rack_schema ||= Rack::Spec::Schema.new(@raw_schema)
+      @links ||= self.class.extract_links(@json_schema).map do |link|
+        Link.new(link: link)
+      end.sort
     end
   end
 end

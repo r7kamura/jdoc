@@ -64,7 +64,7 @@ module Jdoc
 
     # @return [String, nil] Example request body in JSON format
     def request_body
-      MultiJson.encode(RequestBodyGenerator.call(schema), pretty: true) + "\n"
+      MultiJson.encode(RequestGenerator.call(schema), pretty: true) + "\n"
     end
 
     # @return [true, false] True if this endpoint must have request body
@@ -98,7 +98,7 @@ module Jdoc
     # @return [Hash]
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     def response_hash
-      Rack::Spec::Mock::ResponseGenerator.call(schema)
+      ResponseGenerator.call(schema)
     end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order
@@ -119,12 +119,12 @@ module Jdoc
       end
     end
 
-    class RequestBodyGenerator
+    class RequestGenerator
       # Generates example request body from given schema
       # @note Not includes properties that have readOnly property
       # @return [Hash]
       # @example
-      #   Jdoc::Link::RequestBodyGenerator(schema) #=> { "name" => "example", "description" => "foo bar." }
+      #   Jdoc::Link::RequestGenerator(schema) #=> { "name" => "example", "description" => "foo bar." }
       def self.call(schema)
         schema.properties.inject({}) do |result, (key, value)|
           if value.data["readOnly"]
@@ -145,6 +145,32 @@ module Jdoc
           end
         end
       end
+    end
+
+    class ResponseGenerator
+      # Generates example response Hash from given schema
+      # @return [Hash]
+      # @example
+      #   Jdoc::Link::ResponseGenerator(schema) #=> { "id" => 1, "name" => "example" }
+      def self.call(schema)
+        schema.properties.inject({}) do |result, (key, value)|
+          result.merge(
+            key => case
+            when !value.properties.empty?
+              call(value)
+            when !value.data["example"].nil?
+              value.data["example"]
+            when value.type.include?("null")
+              nil
+            else
+              raise ExampleNotFound, "No example found for #{schema.pointer}/#{key}"
+            end
+          )
+        end
+      end
+    end
+
+    class ExampleNotFound < StandardError
     end
   end
 end
