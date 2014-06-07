@@ -1,5 +1,5 @@
 # Example API
-* App
+* [App](#app)
  * [GET /apps](#get-apps)
  * [POST /apps](#post-apps)
  * [GET /apps/:id](#get-appsid)

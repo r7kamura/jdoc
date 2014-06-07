@@ -1,14 +1,14 @@
 module Jdoc
   class Schema
     # @param schema [Hash] JSON Schema
-    def initialize(schema: nil)
+    def initialize(schema)
       @raw_schema = schema
     end
 
     # @return [Hash{Jdoc::Schema => Array}] Linkes table indexed by their schemata
-    def links_indexed_by_schema
+    def links_indexed_by_resource
       @links_indexed_by_schema ||= links.inject(Hash.new {|h, k| h[k] = [] }) do |result, link|
-        result[link.schema] << link
+        result[link.resource] << link
         result
       end
     end

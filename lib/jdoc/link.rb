@@ -40,8 +40,8 @@ module Jdoc
 
     # @return [String] Markdown styled link text for endpoint
     # @example
-    #   link.link_to_endpoint #=> "[GET /apps](#get-apps)"
-    def link_to_endpoint
+    #   link.hyperlink #=> "[GET /apps](#get-apps)"
+    def hyperlink
       "[#{endpoint}](#{anchor})"
     end
 
@@ -85,6 +85,12 @@ module Jdoc
     # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
     def schema
       @raw_link.target_schema || @raw_link.parent
+    end
+
+    # @return [Json::Link::Resource]
+    # @note Resource means each property of top-level properties in this context
+    def resource
+      @resource ||= Resource.new(schema)
     end
 
     private

@@ -1,14 +1,14 @@
 # <%= schema.title %>
-<% schema.links_indexed_by_schema.each do |schema, links| %>
-* <%= schema.title %>
+<% schema.links_indexed_by_resource.each do |resource, links| %>
+* <%= resource.hyperlink %>
 <% links.each do |link| %>
- * <%= link.link_to_endpoint %>
+ * <%= link.hyperlink %>
 <% end %>
 <% end %>
 
-<% schema.links_indexed_by_schema.each do |schema, links| %>
-## <%= schema.title %>
-<%= schema.description %>
+<% schema.links_indexed_by_resource.each do |resource, links| %>
+## <%= resource.title %>
+<%= resource.description %>
 
 <% links.each do |link| %>
 ### <%= link.endpoint %>

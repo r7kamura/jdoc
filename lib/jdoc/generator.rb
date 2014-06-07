@@ -29,7 +29,7 @@ module Jdoc
     # @return [Jdoc::Schema]
     # @raise [JsonSchema::SchemaError] Raises if given invalid JSON Schema
     def schema
-      @schema ||= Jdoc::Schema.new(schema: @raw_schema)
+      @schema ||= Jdoc::Schema.new(@raw_schema)
     end
 
     # @return [Erubis::Eruby]
