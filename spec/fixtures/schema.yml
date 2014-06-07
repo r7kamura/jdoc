@@ -82,7 +82,7 @@ definitions:
         type:
         - string
     links:
-    - description: List recipes
+    - description: List recipes.
       href: "/recipes"
       method: GET
       rel: instances

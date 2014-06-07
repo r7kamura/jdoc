@@ -22,6 +22,11 @@ module Jdoc
       "#{path} #{method_order_score}"
     end
 
+    # @return [String] Description for this endpoint, defined in description property
+    def description
+      @raw_link.description
+    end
+
     private
 
     # @return [Fixnum] Order score, used to sort links by preferred method order

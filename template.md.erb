@@ -2,3 +2,9 @@
 <% schema.links.each do |link| %>
 * <%= link.endpoint %>
 <% end %>
+
+<% schema.links.each do |link| %>
+## <%= link.endpoint %>
+<%= link.description %>
+
+<% end %>
