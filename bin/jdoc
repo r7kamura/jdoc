@@ -3,7 +3,10 @@ $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "jdoc"
 require "yaml"
 
-path = ARGV[0]
+unless path = ARGV[0]
+  puts "usage: #{$0} <schema.json or schema.yml>"
+  exit
+end
 
 case File.extname(path)
 when ".yml", ".yaml"
