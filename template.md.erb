@@ -1,10 +1,17 @@
 # <%= schema.title %>
-<% schema.links.each do |link| %>
-* <%= link.link_to_endpoint %>
+<% schema.links_indexed_by_schema.each do |schema, links| %>
+* <%= schema.title %>
+<% links.each do |link| %>
+ * <%= link.link_to_endpoint %>
+<% end %>
 <% end %>
 
-<% schema.links.each do |link| %>
-## <%= link.endpoint %>
+<% schema.links_indexed_by_schema.each do |schema, links| %>
+## <%= schema.title %>
+<%= schema.description %>
+
+<% links.each do |link| %>
+### <%= link.endpoint %>
 <%= link.description %>
 
 ```
@@ -21,4 +28,5 @@ Content-Type: application/json
 <%= link.response_body %>
 ```
 
+<% end %>
 <% end %>

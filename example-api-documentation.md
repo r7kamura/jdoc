@@ -1,11 +1,15 @@
 # Example API
-* [GET /apps](#get-apps)
-* [POST /apps](#post-apps)
-* [GET /apps/:id](#get-appsid)
-* [PATCH /apps/:id](#patch-appsid)
-* [DELETE /apps/:id](#delete-appsid)
+* App
+ * [GET /apps](#get-apps)
+ * [POST /apps](#post-apps)
+ * [GET /apps/:id](#get-appsid)
+ * [PATCH /apps/:id](#patch-appsid)
+ * [DELETE /apps/:id](#delete-appsid)
 
-## GET /apps
+## App
+An app is a program to be deployed.
+
+### GET /apps
 List existing apps.
 
 ```
@@ -24,7 +28,7 @@ Content-Type: application/json
 }
 ```
 
-## POST /apps
+### POST /apps
 Create a new app.
 
 ```
@@ -47,7 +51,7 @@ Content-Type: application/json
 }
 ```
 
-## GET /apps/:id
+### GET /apps/:id
 Info for existing app.
 
 ```
@@ -66,7 +70,7 @@ Content-Type: application/json
 }
 ```
 
-## PATCH /apps/:id
+### PATCH /apps/:id
 Update an existing app.
 
 ```
@@ -89,7 +93,7 @@ Content-Type: application/json
 }
 ```
 
-## DELETE /apps/:id
+### DELETE /apps/:id
 Delete an existing app.
 
 ```

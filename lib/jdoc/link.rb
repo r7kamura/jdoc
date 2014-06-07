@@ -82,17 +82,17 @@ module Jdoc
       method == "POST" ? 201 : 200
     end
 
+    # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
+    def schema
+      @raw_link.target_schema || @raw_link.parent
+    end
+
     private
 
     # @return [Hash]
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     def response_hash
       Rack::Spec::Mock::ResponseGenerator.call(schema)
-    end
-
-    # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
-    def schema
-      @raw_link.target_schema || @raw_link.parent
     end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order

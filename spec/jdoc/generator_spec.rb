@@ -19,13 +19,17 @@ describe Jdoc::Generator do
     it "returns a String of API documentation in Markdown from given JSON Schema" do
       should == <<-EOS.strip_heredoc
         # Example API
-        * [GET /apps](#get-apps)
-        * [POST /apps](#post-apps)
-        * [GET /apps/:id](#get-appsid)
-        * [PATCH /apps/:id](#patch-appsid)
-        * [DELETE /apps/:id](#delete-appsid)
+        * App
+         * [GET /apps](#get-apps)
+         * [POST /apps](#post-apps)
+         * [GET /apps/:id](#get-appsid)
+         * [PATCH /apps/:id](#patch-appsid)
+         * [DELETE /apps/:id](#delete-appsid)
 
-        ## GET /apps
+        ## App
+        An app is a program to be deployed.
+
+        ### GET /apps
         List existing apps.
 
         ```
@@ -44,7 +48,7 @@ describe Jdoc::Generator do
         }
         ```
 
-        ## POST /apps
+        ### POST /apps
         Create a new app.
 
         ```
@@ -67,7 +71,7 @@ describe Jdoc::Generator do
         }
         ```
 
-        ## GET /apps/:id
+        ### GET /apps/:id
         Info for existing app.
 
         ```
@@ -86,7 +90,7 @@ describe Jdoc::Generator do
         }
         ```
 
-        ## PATCH /apps/:id
+        ### PATCH /apps/:id
         Update an existing app.
 
         ```
@@ -109,7 +113,7 @@ describe Jdoc::Generator do
         }
         ```
 
-        ## DELETE /apps/:id
+        ### DELETE /apps/:id
         Delete an existing app.
 
         ```
