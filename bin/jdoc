@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "jdoc"
-require "json"
 require "yaml"
 
 path = ARGV[0]
@@ -11,7 +10,7 @@ when ".yml", ".yaml"
   schema = YAML.load_file(path)
 else
   str = File.read(path)
-  schema = JSON.parse(str)
+  schema = MultiJson.decode(str)
 end
 
 puts Jdoc::Generator.call(schema)
