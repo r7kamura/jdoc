@@ -19,12 +19,12 @@ describe Jdoc::Generator do
     it "returns a String of API documentation in Markdown from given JSON Schema" do
       should == <<-EOS.strip_heredoc
         # API Documentation
-        * GET /apps
-        * POST /apps
-        * GET /apps/:id
-        * PATCH /apps/:id
-        * DELETE /apps/:id
-        * GET /recipes
+        * [GET /apps](#get-apps)
+        * [POST /apps](#post-apps)
+        * [GET /apps/:id](#get-appsid)
+        * [PATCH /apps/:id](#patch-appsid)
+        * [DELETE /apps/:id](#delete-appsid)
+        * [GET /recipes](#get-recipes)
 
         ## GET /apps
         List existing apps.
