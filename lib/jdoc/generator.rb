@@ -9,7 +9,7 @@ module Jdoc
     end
 
     # @param schema [Hash] JSON Schema represented as a Hash
-    def initialize(schema: nil)
+    def initialize(schema)
       @raw_schema = schema
     end
 
@@ -26,10 +26,10 @@ module Jdoc
       { schema: schema }
     end
 
-    # @return [JsonSchema::Schema]
-    # @raise [JsonSchema::SchemaError]
+    # @return [Jdoc::Schema]
+    # @raise [JsonSchema::SchemaError] Raises if given invalid JSON Schema
     def schema
-      @schema ||= JsonSchema.parse!(@raw_schema).tap(&:expand_references!)
+      @schema ||= Jdoc::Schema.new(schema: @raw_schema)
     end
 
     # @return [Erubis::Eruby]

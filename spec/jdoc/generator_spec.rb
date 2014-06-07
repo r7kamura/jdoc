@@ -1,10 +1,11 @@
 require "spec_helper"
+require "active_support/core_ext/string/strip"
 require "yaml"
 
 describe Jdoc::Generator do
   describe ".call" do
     subject do
-      described_class.call(schema: schema)
+      described_class.call(schema)
     end
 
     let(:schema) do
@@ -16,7 +17,15 @@ describe Jdoc::Generator do
     end
 
     it "returns a String of API documentation in Markdown from given JSON Schema" do
-      should be_a String
+      should == <<-EOS.strip_heredoc
+       # API Documentation
+       * GET /apps
+       * POST /apps
+       * GET /apps/:id
+       * PATCH /apps/:id
+       * DELETE /apps/:id
+       * GET /recipes
+      EOS
     end
   end
 end
