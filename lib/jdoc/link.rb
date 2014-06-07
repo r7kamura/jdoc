@@ -45,7 +45,38 @@ module Jdoc
       "[#{endpoint}](#{anchor})"
     end
 
+    # @return [String] Upper cased HTTP request method name
+    # @example
+    #   link.method #=> "GET"
+    def method
+      @method ||= @raw_link.method.to_s.upcase
+    end
+
+    # @return [String] Request path name, defined at href property
+    # @note URI Template is replaced with placeholder
+    # @example
+    #   link.path #=> "GET /apps/:id"
+    def path
+      @path ||= @raw_link.href.gsub(/{(.+)}/) do |matched|
+        ":" + CGI.unescape($1).gsub(/[()]/, "").split("/").last
+      end
+    end
+
+    # @return [String, nil] Example request body in JSON format
+    def request_body
+      MultiJson.encode(RequestBodyGenerator.call(schema), pretty: true) + "\n"
+    end
+
+    def has_request_body?
+      ["PATCH", "POST", "PUT"].include?(method)
+    end
+
     private
+
+    # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
+    def schema
+      @raw_link.target_schema || @raw_link.parent
+    end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order
     def method_order_score
@@ -65,20 +96,31 @@ module Jdoc
       end
     end
 
-    # @return [String] Upper cased HTTP request method name
-    # @example
-    #   link.method #=> "GET"
-    def method
-      @raw_link.method.to_s.upcase
-    end
-
-    # @return [String] Request path name, defined at href property
-    # @note URI Template is replaced with placeholder
-    # @example
-    #   link.path #=> "GET /apps/:id"
-    def path
-      @raw_link.href.gsub(/{(.+)}/) do |matched|
-        ":" + CGI.unescape($1).gsub(/[()]/, "").split("/").last
+    class RequestBodyGenerator
+      # Generates example request body from given schema
+      # @note Not includes properties that have readOnly property
+      # @return [Hash]
+      # @example
+      #   Jdoc::Link::RequestBodyGenerator(schema) #=> { "name" => "example", "description" => "foo bar." }
+      def self.call(schema)
+        schema.properties.inject({}) do |result, (key, value)|
+          if value.data["readOnly"]
+            result
+          else
+            result.merge(
+              key => case
+              when !value.properties.empty?
+                call(value)
+              when !value.data["example"].nil?
+                value.data["example"]
+              when value.type.include?("null")
+                nil
+              else
+                raise ExampleNotFound, "No example found for #{schema.pointer}/#{key}"
+              end
+            )
+          end
+        end
       end
     end
   end
