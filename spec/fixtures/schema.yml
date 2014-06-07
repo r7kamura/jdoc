@@ -1,0 +1,104 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+definitions:
+  app:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: An app is a program to be deployed.
+    id: schemata/app
+    title: App
+    type:
+    - object
+    required:
+    - id
+    definitions:
+      id:
+        description: unique identifier of app
+        example: 01234567-89ab-cdef-0123-456789abcdef
+        format: uuid
+        readOnly: true
+        type:
+        - string
+      name:
+        description: unique name of app
+        example: example
+        pattern: "^[a-z][a-z0-9-]{3,50}$"
+        readOnly: false
+        type:
+        - string
+    links:
+    - description: Create a new app.
+      href: "/apps"
+      method: POST
+      rel: create
+      schema:
+        properties:
+          name:
+            "$ref": "#/definitions/app/definitions/name"
+        type:
+        - object
+      title: Create
+    - description: Delete an existing app.
+      href: "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}"
+      method: DELETE
+      rel: destroy
+      title: Delete
+    - description: Info for existing app.
+      href: "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}"
+      method: GET
+      rel: self
+      title: Info
+    - description: List existing apps.
+      href: "/apps"
+      method: GET
+      rel: instances
+      title: List
+    - description: Update an existing app.
+      href: "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}"
+      method: PATCH
+      rel: update
+      schema:
+        properties:
+          name:
+            "$ref": "#/definitions/app/definitions/name"
+        type:
+        - object
+      title: Update
+    properties:
+      id:
+        "$ref": "#/definitions/app/definitions/id"
+      name:
+        "$ref": "#/definitions/app/definitions/name"
+  recipe:
+    "$schema": http://json-schema.org/draft-04/hyper-schema
+    description: cooking Recipe
+    title: Recipe
+    type:
+    - object
+    definitions:
+      id:
+        description: unique identifier of recipe
+        format: uuid
+        readOnly: true
+        type:
+        - string
+    links:
+    - description: List recipes
+      href: "/recipes"
+      method: GET
+      rel: instances
+      title: list
+    properties:
+      id:
+        "$ref": "#/definitions/recipe/definitions/id"
+properties:
+  app:
+    "$ref": "#/definitions/app"
+  recipe:
+    "$ref": "#/definitions/recipe"
+type:
+- object
+description: A schema for a small example API.
+links:
+- href: http://localhost:5000
+  rel: self
+title: Example API
