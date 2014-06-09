@@ -57,8 +57,8 @@ module Jdoc
     # @example
     #   link.path #=> "GET /apps/:id"
     def path
-      @path ||= @raw_link.href.gsub(/{(.+)}/) do |matched|
-        ":" + CGI.unescape($1).gsub(/[()]/, "").split("/").last
+      @path ||= @raw_link.href.gsub(/{(.+?)}/) do |matched|
+        ":" + CGI.unescape($1).gsub(/[()\s]/, "").split("/").last
       end
     end
 
