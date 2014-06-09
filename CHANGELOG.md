@@ -1,3 +1,6 @@
+## 0.0.4
+* Support whitespace and multiple templates in href
+
 ## 0.0.3
 * Fix missing gem dependencies
 
