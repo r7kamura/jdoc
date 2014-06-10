@@ -75,6 +75,6 @@ type:
 - object
 description: A schema for a small example API.
 links:
-- href: http://localhost:5000
+- href: https://api.example.com
   rel: self
 title: Example API

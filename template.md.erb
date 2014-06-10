@@ -25,7 +25,7 @@
 ```
 <%= link.method %> <%= link.path %> HTTP/1.1
 Content-Type: application/json
-Host: api.example.com
+Host: <%= schema.host_with_port %>
 <%= "\n" + link.request_body if link.has_request_body? -%>
 ```
 

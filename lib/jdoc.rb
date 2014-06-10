@@ -1,6 +1,7 @@
 require "cgi"
 require "erubis"
 require "json_schema"
+require "uri"
 
 require "jdoc/generator"
 require "jdoc/link"

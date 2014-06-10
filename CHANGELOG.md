@@ -1,3 +1,6 @@
+## 0.0.6
+* Use root API endpoint at example response
+
 ## 0.0.5
 * Remove dependency on multi_json
 
