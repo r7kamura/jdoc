@@ -64,7 +64,7 @@ module Jdoc
 
     # @return [String, nil] Example request body in JSON format
     def request_body
-      MultiJson.encode(RequestGenerator.call(schema), pretty: true) + "\n"
+      JSON.pretty_generate(RequestGenerator.call(schema)) + "\n"
     end
 
     # @return [true, false] True if this endpoint must have request body
@@ -74,7 +74,7 @@ module Jdoc
 
     # @return [String] JSON response body generated from example properties
     def response_body
-      MultiJson.encode(response_hash, pretty: true)
+      JSON.pretty_generate(response_hash)
     end
 
     # @return [Fixnum] Preferred respone status code for this endpoint

@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "erubis"
   spec.add_dependency "json_schema"
-  spec.add_dependency "multi_json"
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "pry"

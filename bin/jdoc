@@ -13,7 +13,7 @@ when ".yml", ".yaml"
   schema = YAML.load_file(path)
 else
   str = File.read(path)
-  schema = MultiJson.decode(str)
+  schema = JSON.parse(str)
 end
 
 puts Jdoc::Generator.call(schema)

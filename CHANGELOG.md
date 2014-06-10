@@ -1,3 +1,6 @@
+## 0.0.5
+* Remove dependency on multi_json
+
 ## 0.0.4
 * Support whitespace and multiple templates in href
 
