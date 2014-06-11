@@ -30,6 +30,11 @@ definitions:
         example: false
         type:
         - boolean
+      deleted_at:
+        description: When this resource was deleted at
+        example: null
+        type:
+        - "null"
     links:
     - description: Create a new app.
       href: "/apps"
@@ -75,6 +80,8 @@ definitions:
         "$ref": "#/definitions/app/definitions/name"
       private:
         "$ref": "#/definitions/app/definitions/private"
+      deleted_at:
+        "$ref": "#/definitions/app/definitions/deleted_at"
 properties:
   app:
     "$ref": "#/definitions/app"

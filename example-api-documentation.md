@@ -11,17 +11,20 @@ An app is a program to be deployed.
 
 ### Properties
 * id - unique identifier of app
- * Example: `01234567-89ab-cdef-0123-456789abcdef`
+ * Example: `"01234567-89ab-cdef-0123-456789abcdef"`
  * Type: string
  * Format: uuid
  * ReadOnly: true
 * name - unique name of app
- * Example: `example`
+ * Example: `"example"`
  * Type: string
  * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
 * private - true if this resource is private use
  * Example: `false`
  * Type: boolean
+* deleted_at - When this resource was deleted at
+ * Example: `nil`
+ * Type: null
 
 ### GET /apps
 List existing apps.
@@ -39,7 +42,8 @@ Content-Type: application/json
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -53,7 +57,8 @@ Host: api.example.com
 
 {
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -64,7 +69,8 @@ Content-Type: application/json
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -84,7 +90,8 @@ Content-Type: application/json
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -98,7 +105,8 @@ Host: api.example.com
 
 {
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -109,7 +117,8 @@ Content-Type: application/json
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
@@ -129,7 +138,8 @@ Content-Type: application/json
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
-  "private": false
+  "private": false,
+  "deleted_at": null
 }
 ```
 
