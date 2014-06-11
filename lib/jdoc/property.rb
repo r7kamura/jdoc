@@ -27,9 +27,8 @@ module Jdoc
 
     # @return [String, nil] Example value, defined in example property
     def example
-      if str = @schema.data["example"]
-        "`#{str}`"
-      end
+      return if (str = @schema.data["example"]).nil?
+      "`#{str}`"
     end
 
     # @return [String, nil] Pattern constraint, defined in pattern property
