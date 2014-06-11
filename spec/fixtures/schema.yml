@@ -25,6 +25,11 @@ definitions:
         readOnly: false
         type:
         - string
+      private:
+        description: true if this resource is private use
+        example: false
+        type:
+        - boolean
     links:
     - description: Create a new app.
       href: "/apps"
@@ -68,6 +73,8 @@ definitions:
         "$ref": "#/definitions/app/definitions/id"
       name:
         "$ref": "#/definitions/app/definitions/name"
+      private:
+        "$ref": "#/definitions/app/definitions/private"
 properties:
   app:
     "$ref": "#/definitions/app"

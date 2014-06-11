@@ -19,6 +19,9 @@ An app is a program to be deployed.
  * Example: `example`
  * Type: string
  * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+* private - true if this resource is private use
+ * Example: `false`
+ * Type: boolean
 
 ### GET /apps
 List existing apps.
@@ -35,7 +38,8 @@ Content-Type: application/json
 
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -48,7 +52,8 @@ Content-Type: application/json
 Host: api.example.com
 
 {
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -58,7 +63,8 @@ Content-Type: application/json
 
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -77,7 +83,8 @@ Content-Type: application/json
 
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -90,7 +97,8 @@ Content-Type: application/json
 Host: api.example.com
 
 {
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -100,7 +108,8 @@ Content-Type: application/json
 
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 
@@ -119,7 +128,8 @@ Content-Type: application/json
 
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example"
+  "name": "example",
+  "private": false
 }
 ```
 

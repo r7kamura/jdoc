@@ -39,6 +39,9 @@ describe Jdoc::Generator do
          * Example: `example`
          * Type: string
          * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+        * private - true if this resource is private use
+         * Example: `false`
+         * Type: boolean
 
         ### GET /apps
         List existing apps.
@@ -55,7 +58,8 @@ describe Jdoc::Generator do
 
         {
           "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -68,7 +72,8 @@ describe Jdoc::Generator do
         Host: api.example.com
 
         {
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -78,7 +83,8 @@ describe Jdoc::Generator do
 
         {
           "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -97,7 +103,8 @@ describe Jdoc::Generator do
 
         {
           "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -110,7 +117,8 @@ describe Jdoc::Generator do
         Host: api.example.com
 
         {
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -120,7 +128,8 @@ describe Jdoc::Generator do
 
         {
           "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
@@ -139,7 +148,8 @@ describe Jdoc::Generator do
 
         {
           "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example"
+          "name": "example",
+          "private": false
         }
         ```
 
