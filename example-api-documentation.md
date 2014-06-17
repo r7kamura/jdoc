@@ -43,9 +43,11 @@ Host: api.example.com
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -58,9 +60,11 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -82,9 +86,11 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -106,9 +112,11 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -130,9 +138,11 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -148,9 +158,11 @@ Host: api.example.com
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
@@ -163,9 +175,11 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
-  "users": {
-    "name": "alice"
-  }
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
 }
 ```
 
