@@ -49,7 +49,19 @@ module Jdoc
 
     # Defined to change uniqueness in Hash key
     def eql?(other)
-      @schema.title == @schema.title
+      @schema.title == other.title
+    end
+
+    def <=>(other)
+      @schema.title <=> other.title
+    end
+
+    def links
+      @links ||= @schema.links.map do |link|
+        if link.method && link.href
+          Link.new(link)
+        end
+      end.compact
     end
   end
 end

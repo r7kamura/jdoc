@@ -99,6 +99,8 @@ definitions:
 properties:
   app:
     "$ref": "#/definitions/app"
+  user:
+    "$ref": "#/definitions/user"
 type:
 - object
 description: A schema for a small example API.

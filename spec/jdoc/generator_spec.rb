@@ -20,11 +20,12 @@ describe Jdoc::Generator do
       should == <<-EOS.strip_heredoc
         # Example API
         * [App](#app)
-         * [GET /apps](#get-apps)
          * [POST /apps](#post-apps)
-         * [GET /apps/:id](#get-appsid)
-         * [PATCH /apps/:id](#patch-appsid)
          * [DELETE /apps/:id](#delete-appsid)
+         * [GET /apps/:id](#get-appsid)
+         * [GET /apps](#get-apps)
+         * [PATCH /apps/:id](#patch-appsid)
+        * [User](#user)
 
         ## App
         An app is a program to be deployed.
@@ -47,30 +48,6 @@ describe Jdoc::Generator do
          * Type: null
         * users - 
          * Type: array
-
-        ### GET /apps
-        List existing apps.
-
-        ```
-        GET /apps HTTP/1.1
-        Content-Type: application/json
-        Host: api.example.com
-        ```
-
-        ```
-        HTTP/1.1 200
-        Content-Type: application/json
-
-        {
-          "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example",
-          "private": false,
-          "deleted_at": null,
-          "users": {
-            "name": "alice"
-          }
-        }
-        ```
 
         ### POST /apps
         Create a new app.
@@ -105,11 +82,59 @@ describe Jdoc::Generator do
         }
         ```
 
+        ### DELETE /apps/:id
+        Delete an existing app.
+
+        ```
+        DELETE /apps/:id HTTP/1.1
+        Content-Type: application/json
+        Host: api.example.com
+        ```
+
+        ```
+        HTTP/1.1 200
+        Content-Type: application/json
+
+        {
+          "id": "01234567-89ab-cdef-0123-456789abcdef",
+          "name": "example",
+          "private": false,
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
+        }
+        ```
+
         ### GET /apps/:id
         Info for existing app.
 
         ```
         GET /apps/:id HTTP/1.1
+        Content-Type: application/json
+        Host: api.example.com
+        ```
+
+        ```
+        HTTP/1.1 200
+        Content-Type: application/json
+
+        {
+          "id": "01234567-89ab-cdef-0123-456789abcdef",
+          "name": "example",
+          "private": false,
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
+        }
+        ```
+
+        ### GET /apps
+        List existing apps.
+
+        ```
+        GET /apps HTTP/1.1
         Content-Type: application/json
         Host: api.example.com
         ```
@@ -162,29 +187,13 @@ describe Jdoc::Generator do
         }
         ```
 
-        ### DELETE /apps/:id
-        Delete an existing app.
+        ## User
 
-        ```
-        DELETE /apps/:id HTTP/1.1
-        Content-Type: application/json
-        Host: api.example.com
-        ```
 
-        ```
-        HTTP/1.1 200
-        Content-Type: application/json
-
-        {
-          "id": "01234567-89ab-cdef-0123-456789abcdef",
-          "name": "example",
-          "private": false,
-          "deleted_at": null,
-          "users": {
-            "name": "alice"
-          }
-        }
-        ```
+        ### Properties
+        * name - 
+         * Example: `"alice"`
+         * Type: string
 
       EOS
     end

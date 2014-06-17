@@ -1,7 +1,7 @@
 module Jdoc
   class Link
     # @param link [JsonSchema::Schema::Link]
-    def initialize(link: nil)
+    def initialize(link)
       @raw_link = link
     end
 

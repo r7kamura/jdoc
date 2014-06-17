@@ -1,3 +1,6 @@
+## 0.1.0
+* Show resources which have no links
+
 ## 0.0.9
 * Support array property
 
