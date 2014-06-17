@@ -142,7 +142,7 @@ module Jdoc
           result.merge(
             key => case
             when !value.properties.empty?
-              call(value)
+              call(value.properties)
             when !value.data["example"].nil?
               value.data["example"]
             when value.type.include?("null")

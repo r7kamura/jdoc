@@ -86,6 +86,24 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/user"
+  recipe:
+    title: Recipe
+    type: object
+    definitions:
+      name:
+        type: string
+        example: "Sushi"
+    properties:
+      name:
+        "$ref": "#/definitions/recipe/definitions/name"
+      user:
+        "$ref": "#/definitions/user"
+    links:
+    - title: List
+      description: List recipes
+      method: GET
+      href: "/recipes"
+      rel: instances
   user:
     title: User
     type: object
@@ -99,6 +117,8 @@ definitions:
 properties:
   app:
     "$ref": "#/definitions/app"
+  recipe:
+    "$ref": "#/definitions/recipe"
   user:
     "$ref": "#/definitions/user"
 type:

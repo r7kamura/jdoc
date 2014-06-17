@@ -25,6 +25,8 @@ describe Jdoc::Generator do
          * [GET /apps/:id](#get-appsid)
          * [GET /apps](#get-apps)
          * [PATCH /apps/:id](#patch-appsid)
+        * [Recipe](#recipe)
+         * [GET /recipes](#get-recipes)
         * [User](#user)
 
         ## App
@@ -182,6 +184,37 @@ describe Jdoc::Generator do
           "private": false,
           "deleted_at": null,
           "users": {
+            "name": "alice"
+          }
+        }
+        ```
+
+        ## Recipe
+
+
+        ### Properties
+        * name - 
+         * Example: `"Sushi"`
+         * Type: string
+        * user - 
+         * Type: object
+
+        ### GET /recipes
+        List recipes
+
+        ```
+        GET /recipes HTTP/1.1
+        Content-Type: application/json
+        Host: api.example.com
+        ```
+
+        ```
+        HTTP/1.1 200
+        Content-Type: application/json
+
+        {
+          "name": "Sushi",
+          "user": {
             "name": "alice"
           }
         }

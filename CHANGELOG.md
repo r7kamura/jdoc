@@ -1,3 +1,6 @@
+## 0.1.1
+* Support has-one relation
+
 ## 0.1.0
 * Show resources which have no links
 
