@@ -1,10 +1,13 @@
 # Example API
 * [App](#app)
- * [GET /apps](#get-apps)
  * [POST /apps](#post-apps)
- * [GET /apps/:id](#get-appsid)
- * [PATCH /apps/:id](#patch-appsid)
  * [DELETE /apps/:id](#delete-appsid)
+ * [GET /apps/:id](#get-appsid)
+ * [GET /apps](#get-apps)
+ * [PATCH /apps/:id](#patch-appsid)
+* [Recipe](#recipe)
+ * [GET /recipes](#get-recipes)
+* [User](#user)
 
 ## App
 An app is a program to be deployed.
@@ -25,27 +28,8 @@ An app is a program to be deployed.
 * deleted_at - When this resource was deleted at
  * Example: `nil`
  * Type: null
-
-### GET /apps
-List existing apps.
-
-```
-GET /apps HTTP/1.1
-Content-Type: application/json
-Host: api.example.com
-```
-
-```
-HTTP/1.1 200
-Content-Type: application/json
-
-{
-  "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example",
-  "private": false,
-  "deleted_at": null
-}
-```
+* users - 
+ * Type: array
 
 ### POST /apps
 Create a new app.
@@ -58,7 +42,10 @@ Host: api.example.com
 {
   "name": "example",
   "private": false,
-  "deleted_at": null
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
 }
 ```
 
@@ -70,55 +57,10 @@ Content-Type: application/json
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
   "private": false,
-  "deleted_at": null
-}
-```
-
-### GET /apps/:id
-Info for existing app.
-
-```
-GET /apps/:id HTTP/1.1
-Content-Type: application/json
-Host: api.example.com
-```
-
-```
-HTTP/1.1 200
-Content-Type: application/json
-
-{
-  "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example",
-  "private": false,
-  "deleted_at": null
-}
-```
-
-### PATCH /apps/:id
-Update an existing app.
-
-```
-PATCH /apps/:id HTTP/1.1
-Content-Type: application/json
-Host: api.example.com
-
-{
-  "name": "example",
-  "private": false,
-  "deleted_at": null
-}
-```
-
-```
-HTTP/1.1 200
-Content-Type: application/json
-
-{
-  "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example",
-  "private": false,
-  "deleted_at": null
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
 }
 ```
 
@@ -139,7 +81,130 @@ Content-Type: application/json
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
   "private": false,
-  "deleted_at": null
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
 }
 ```
+
+### GET /apps/:id
+Info for existing app.
+
+```
+GET /apps/:id HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "name": "example",
+  "private": false,
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
+}
+```
+
+### GET /apps
+List existing apps.
+
+```
+GET /apps HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "name": "example",
+  "private": false,
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
+}
+```
+
+### PATCH /apps/:id
+Update an existing app.
+
+```
+PATCH /apps/:id HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+
+{
+  "name": "example",
+  "private": false,
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
+}
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "name": "example",
+  "private": false,
+  "deleted_at": null,
+  "users": {
+    "name": "alice"
+  }
+}
+```
+
+## Recipe
+
+
+### Properties
+* name - 
+ * Example: `"Sushi"`
+ * Type: string
+* user - 
+ * Type: object
+
+### GET /recipes
+List recipes
+
+```
+GET /recipes HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+```
+
+```
+HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "name": "Sushi",
+  "user": {
+    "name": "alice"
+  }
+}
+```
+
+## User
+
+
+### Properties
+* name - 
+ * Example: `"alice"`
+ * Type: string
 
