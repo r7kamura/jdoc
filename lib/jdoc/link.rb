@@ -147,6 +147,8 @@ module Jdoc
               value.data["example"]
             when value.type.include?("null")
               nil
+            when value.type.include?("array")
+              call(value.items.properties)
             else
               raise ExampleNotFound, "No example found for #{schema.pointer}/#{key}"
             end

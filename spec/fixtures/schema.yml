@@ -82,6 +82,20 @@ definitions:
         "$ref": "#/definitions/app/definitions/private"
       deleted_at:
         "$ref": "#/definitions/app/definitions/deleted_at"
+      users:
+        type: array
+        items:
+          "$ref": "#/definitions/user"
+  user:
+    title: User
+    type: object
+    definitions:
+      name:
+        type: string
+        example: alice
+    properties:
+      name:
+        "$ref": "#/definitions/user/definitions/name"
 properties:
   app:
     "$ref": "#/definitions/app"

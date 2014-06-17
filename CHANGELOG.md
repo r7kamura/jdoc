@@ -1,3 +1,6 @@
+## 0.0.9
+* Support array property
+
 ## 0.0.8
 * Fix resource equality
 

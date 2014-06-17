@@ -45,6 +45,8 @@ describe Jdoc::Generator do
         * deleted_at - When this resource was deleted at
          * Example: `nil`
          * Type: null
+        * users - 
+         * Type: array
 
         ### GET /apps
         List existing apps.
@@ -63,7 +65,10 @@ describe Jdoc::Generator do
           "id": "01234567-89ab-cdef-0123-456789abcdef",
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -78,7 +83,10 @@ describe Jdoc::Generator do
         {
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -90,7 +98,10 @@ describe Jdoc::Generator do
           "id": "01234567-89ab-cdef-0123-456789abcdef",
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -111,7 +122,10 @@ describe Jdoc::Generator do
           "id": "01234567-89ab-cdef-0123-456789abcdef",
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -126,7 +140,10 @@ describe Jdoc::Generator do
         {
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -138,7 +155,10 @@ describe Jdoc::Generator do
           "id": "01234567-89ab-cdef-0123-456789abcdef",
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
@@ -159,7 +179,10 @@ describe Jdoc::Generator do
           "id": "01234567-89ab-cdef-0123-456789abcdef",
           "name": "example",
           "private": false,
-          "deleted_at": null
+          "deleted_at": null,
+          "users": {
+            "name": "alice"
+          }
         }
         ```
 
