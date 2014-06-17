@@ -133,17 +133,19 @@ Host: api.example.com
 HTTP/1.1 200
 Content-Type: application/json
 
-{
-  "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example",
-  "private": false,
-  "deleted_at": null,
-  "users": [
-    {
-      "name": "alice"
-    }
-  ]
-}
+[
+  {
+    "id": "01234567-89ab-cdef-0123-456789abcdef",
+    "name": "example",
+    "private": false,
+    "deleted_at": null,
+    "users": [
+      {
+        "name": "alice"
+      }
+    ]
+  }
+]
 ```
 
 ### PATCH /apps/:id
@@ -206,12 +208,14 @@ Host: api.example.com
 HTTP/1.1 200
 Content-Type: application/json
 
-{
-  "name": "Sushi",
-  "user": {
-    "name": "alice"
+[
+  {
+    "name": "Sushi",
+    "user": {
+      "name": "alice"
+    }
   }
-}
+]
 ```
 
 ## User

@@ -74,7 +74,8 @@ module Jdoc
 
     # @return [String] JSON response body generated from example properties
     def response_body
-      JSON.pretty_generate(response_hash)
+      object = has_list_data? ? [response_hash] : response_hash
+      JSON.pretty_generate(object)
     end
 
     # @return [Fixnum] Preferred respone status code for this endpoint
@@ -94,6 +95,11 @@ module Jdoc
     end
 
     private
+
+    # @return [true, false] True if response is intended to be list data
+    def has_list_data?
+      @raw_link.rel == "instances"
+    end
 
     # @return [Hash]
     # @raise [Rack::Spec::Mock::ExampleNotFound]
