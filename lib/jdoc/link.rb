@@ -64,7 +64,7 @@ module Jdoc
 
     # @return [String, nil] Example request body in JSON format
     def request_body
-      JSON.pretty_generate(RequestGenerator.call(schema)) + "\n"
+      JSON.pretty_generate(RequestGenerator.call(schema.properties)) + "\n"
     end
 
     # @return [true, false] True if this endpoint must have request body
@@ -98,7 +98,7 @@ module Jdoc
     # @return [Hash]
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     def response_hash
-      ResponseGenerator.call(schema)
+      ResponseGenerator.call(schema.properties)
     end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order
@@ -121,39 +121,24 @@ module Jdoc
 
     class RequestGenerator
       # Generates example request body from given schema
+      # @param properties [Hash]
       # @note Not includes properties that have readOnly property
       # @return [Hash]
       # @example
-      #   Jdoc::Link::RequestGenerator(schema) #=> { "name" => "example", "description" => "foo bar." }
-      def self.call(schema)
-        schema.properties.inject({}) do |result, (key, value)|
-          if value.data["readOnly"]
-            result
-          else
-            result.merge(
-              key => case
-              when !value.properties.empty?
-                call(value)
-              when !value.data["example"].nil?
-                value.data["example"]
-              when value.type.include?("null")
-                nil
-              else
-                raise ExampleNotFound, "No example found for #{schema.pointer}/#{key}"
-              end
-            )
-          end
-        end
+      #   Jdoc::Link::RequestGenerator(schema.properties) #=> { "name" => "example", "description" => "foo bar." }
+      def self.call(properties)
+        ResponseGenerator.call(properties.reject {|key, value| value.data["readOnly"] })
       end
     end
 
     class ResponseGenerator
       # Generates example response Hash from given schema
+      # @param properties [Hash]
       # @return [Hash]
       # @example
-      #   Jdoc::Link::ResponseGenerator(schema) #=> { "id" => 1, "name" => "example" }
-      def self.call(schema)
-        schema.properties.inject({}) do |result, (key, value)|
+      #   Jdoc::Link::ResponseGenerator(schema.properties) #=> { "id" => 1, "name" => "example" }
+      def self.call(properties)
+        properties.inject({}) do |result, (key, value)|
           result.merge(
             key => case
             when !value.properties.empty?
