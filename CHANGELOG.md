@@ -1,5 +1,6 @@
 ## 0.1.2
 * Use .schema property for request body if exists
+* Improve array resource handling
 
 ## 0.1.1
 * Support has-one relation
