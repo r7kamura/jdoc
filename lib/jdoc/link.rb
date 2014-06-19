@@ -64,7 +64,7 @@ module Jdoc
 
     # @return [String, nil] Example request body in JSON format
     def request_body
-      JSON.pretty_generate(RequestGenerator.call(schema.properties)) + "\n"
+      JSON.pretty_generate(RequestGenerator.call(request_schema.properties)) + "\n"
     end
 
     # @return [true, false] True if this endpoint must have request body
@@ -83,15 +83,20 @@ module Jdoc
       method == "POST" ? 201 : 200
     end
 
-    # @return [JsonSchema::Schema] Schema for this link, specified by targetSchema or parent schema
-    def schema
+    # @return [JsonSchema::Schema] Response schema for this link
+    def response_schema
       @raw_link.target_schema || @raw_link.parent
+    end
+
+    # @return [JsonSchema::Schema] Request schema for this link
+    def request_schema
+      @raw_link.schema || @raw_link.parent
     end
 
     # @return [Json::Link::Resource]
     # @note Resource means each property of top-level properties in this context
     def resource
-      @resource ||= Resource.new(schema)
+      @resource ||= Resource.new(response_schema)
     end
 
     private
@@ -104,7 +109,7 @@ module Jdoc
     # @return [Hash]
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     def response_hash
-      ResponseGenerator.call(schema.properties)
+      ResponseGenerator.call(response_schema.properties)
     end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order

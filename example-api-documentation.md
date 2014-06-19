@@ -40,14 +40,7 @@ Content-Type: application/json
 Host: api.example.com
 
 {
-  "name": "example",
-  "private": false,
-  "deleted_at": null,
-  "users": [
-    {
-      "name": "alice"
-    }
-  ]
+  "name": "example"
 }
 ```
 
@@ -157,14 +150,7 @@ Content-Type: application/json
 Host: api.example.com
 
 {
-  "name": "example",
-  "private": false,
-  "deleted_at": null,
-  "users": [
-    {
-      "name": "alice"
-    }
-  ]
+  "name": "example"
 }
 ```
 
