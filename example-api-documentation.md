@@ -66,7 +66,6 @@ Delete an existing app.
 
 ```
 DELETE /apps/:id HTTP/1.1
-Content-Type: application/json
 Host: api.example.com
 ```
 
@@ -92,7 +91,6 @@ Info for existing app.
 
 ```
 GET /apps/:id HTTP/1.1
-Content-Type: application/json
 Host: api.example.com
 ```
 
@@ -118,7 +116,6 @@ List existing apps.
 
 ```
 GET /apps HTTP/1.1
-Content-Type: application/json
 Host: api.example.com
 ```
 
@@ -186,7 +183,6 @@ List recipes
 
 ```
 GET /recipes HTTP/1.1
-Content-Type: application/json
 Host: api.example.com
 ```
 
