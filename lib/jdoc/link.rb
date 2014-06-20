@@ -147,7 +147,7 @@ module Jdoc
       # @param properties [Hash]
       # @return [Hash]
       # @example
-      #   Jdoc::Link::ResponseGenerator(schema.properties) #=> { "id" => 1, "name" => "example" }
+      #   Jdoc::Link::ResponseGenerator(properties) #=> { "id" => 1, "name" => "example" }
       def self.call(properties)
         properties.inject({}) do |result, (key, value)|
           result.merge(
@@ -161,7 +161,7 @@ module Jdoc
             when value.type.include?("array")
               [call(value.items.properties)]
             else
-              raise ExampleNotFound, "No example found for #{schema.pointer}/#{key}"
+              raise ExampleNotFound, "No example found for #{value.pointer}"
             end
           )
         end
