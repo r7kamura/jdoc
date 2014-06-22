@@ -1,3 +1,6 @@
+## 0.1.3
+* Use its pointer name if a resource has no title property
+
 ## 0.1.2
 * Use .schema property for request body if exists
 * Improve array resource handling

@@ -87,7 +87,6 @@ definitions:
         items:
           "$ref": "#/definitions/user"
   recipe:
-    title: Recipe
     type: object
     definitions:
       name:

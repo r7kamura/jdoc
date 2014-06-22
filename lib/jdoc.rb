@@ -1,3 +1,4 @@
+require "active_support/core_ext/string/inflections"
 require "cgi"
 require "erubis"
 require "json_schema"

@@ -32,7 +32,7 @@ module Jdoc
     # @example
     #   resource.title #=> "App"
     def title
-      @schema.title
+      @title ||= @schema.title || @schema.pointer.split("/").last.camelize
     end
 
     # @return [Array<Jdoc::Property>]
