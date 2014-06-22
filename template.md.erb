@@ -1,4 +1,4 @@
-# <%= schema.title %>
+# <%= schema.title || "API" %>
 <% schema.resources.each do |resource| %>
 * <%= resource.hyperlink %>
 <% resource.links.each do |link| %>
