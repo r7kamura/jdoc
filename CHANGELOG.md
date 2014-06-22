@@ -1,3 +1,6 @@
+## 0.1.4
+* Provide :html option to render docs in HTML
+
 ## 0.1.3
 * Use its pointer name if a resource has no title property
 
