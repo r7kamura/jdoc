@@ -44,16 +44,16 @@ module Jdoc
 
     # Defined to change uniqueness in Hash key
     def hash
-      @schema.title.hash
+      title.hash
     end
 
     # Defined to change uniqueness in Hash key
     def eql?(other)
-      @schema.title == other.title
+      title == other.title
     end
 
     def <=>(other)
-      @schema.title <=> other.title
+      title <=> other.title
     end
 
     def links
