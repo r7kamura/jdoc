@@ -16,7 +16,11 @@ module Jdoc
 
       def redcarpet
         @redcarpet ||= Redcarpet::Markdown.new(
-          Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true),
+          Redcarpet::Render::HTML.new(
+            filter_html: true,
+            hard_wrap: true,
+            with_toc_data: true,
+          ),
           autolink: true,
           fenced_code_blocks: true,
         )
@@ -47,11 +51,16 @@ module Jdoc
     end
 
     # Generates Markdown or HTML documentation from JSON schema
+    # @note Add some fix to adapt to GitHub anchor style
     # @return [String]
     def call
       result = self.class.markdown_renderer.result(schema: schema)
-      result = self.class.html_renderer.result(body: self.class.redcarpet.render(result)) if @html
-      result
+      if @html
+        result = self.class.html_renderer.result(body: self.class.redcarpet.render(result))
+        result.gsub(/id="(.+)"/) {|text| text.tr("/:", "") }
+      else
+        result
+      end
     end
 
     private

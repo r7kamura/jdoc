@@ -1,3 +1,6 @@
+## 0.1.5
+* Fix ToC link on HTML docs
+
 ## 0.1.4
 * Provide :html option to render docs in HTML
 
