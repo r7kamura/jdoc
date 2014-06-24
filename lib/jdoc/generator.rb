@@ -23,6 +23,7 @@ module Jdoc
           ),
           autolink: true,
           fenced_code_blocks: true,
+          no_intra_emphasis: true,
         )
       end
 

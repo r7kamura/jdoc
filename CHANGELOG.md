@@ -1,3 +1,6 @@
+## 0.1.6
+* Disable `<em>` feature of Redcarpet
+
 ## 0.1.5
 * Fix ToC link on HTML docs
 
