@@ -1,4 +1,5 @@
 ## 0.1.7
+* Support query string example in GET request
 * Improve the description property visibility
 
 ## 0.1.6

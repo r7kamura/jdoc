@@ -62,9 +62,30 @@ module Jdoc
       end
     end
 
+    # Adds query string if a link has a schema property and method is GET
+    # @return [String, nil] A query string prefixed with `?` only to GET request
+    # @example
+    #   link.query_string #=> "?type=Recipe"
+    def query_string
+      if method == "GET" && !request_parameters.empty?
+        "?#{request_parameters.to_query}"
+      end
+    end
+
     # @return [String, nil] Example request body in JSON format
     def request_body
-      JSON.pretty_generate(RequestGenerator.call(request_schema.properties)) + "\n"
+      JSON.pretty_generate(request_parameters) + "\n"
+    end
+
+    # @return [Hash] Example request parameters for this endpoint
+    def request_parameters
+      @request_parameters ||= begin
+        if has_schema_in_link?
+          RequestGenerator.call(request_schema.properties)
+        else
+          {}
+        end
+      end
     end
 
     # @return [true, false] True if this endpoint must have request body
@@ -100,6 +121,11 @@ module Jdoc
     end
 
     private
+
+    # @return [true, false] True if a given link has a schema property
+    def has_schema_in_link?
+      !!@raw_link.schema
+    end
 
     # @return [true, false] True if response is intended to be list data
     def has_list_data?
