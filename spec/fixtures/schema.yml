@@ -97,7 +97,6 @@ definitions:
     type: object
     definitions:
       name:
-        type: string
         example: "Sushi"
     properties:
       name:

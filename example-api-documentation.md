@@ -195,7 +195,6 @@ Content-Type: application/json
 ### Properties
 * name
  * Example: `"Sushi"`
- * Type: string
 * user
  * Type: object
 

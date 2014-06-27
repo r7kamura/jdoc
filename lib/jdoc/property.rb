@@ -51,7 +51,7 @@ module Jdoc
 
     # @return [String, nil] Possible types defined in type property
     def type
-      if @schema.type
+      unless @schema.type.empty?
         @schema.type.join(", ")
       end
     end

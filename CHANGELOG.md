@@ -1,3 +1,6 @@
+## 0.1.9
+* Support property that has no type
+
 ## 0.1.8
 * Support property that is an array of primitive values
 
