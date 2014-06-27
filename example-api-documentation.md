@@ -13,22 +13,26 @@
 An app is a program to be deployed.
 
 ### Properties
-* id - unique identifier of app
+* id
+ * unique identifier of app
  * Example: `"01234567-89ab-cdef-0123-456789abcdef"`
  * Type: string
  * Format: uuid
  * ReadOnly: true
-* name - unique name of app
+* name
+ * unique name of app
  * Example: `"example"`
  * Type: string
  * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
-* private - true if this resource is private use
+* private
+ * true if this resource is private use
  * Example: `false`
  * Type: boolean
-* deleted_at - When this resource was deleted at
+* deleted_at
+ * When this resource was deleted at
  * Example: `nil`
  * Type: null
-* users - 
+* users
  * Type: array
 
 ### POST /apps
@@ -172,10 +176,10 @@ Content-Type: application/json
 
 
 ### Properties
-* name - 
+* name
  * Example: `"Sushi"`
  * Type: string
-* user - 
+* user
  * Type: object
 
 ### GET /recipes
@@ -204,7 +208,7 @@ Content-Type: application/json
 
 
 ### Properties
-* name - 
+* name
  * Example: `"alice"`
  * Type: string
 

@@ -12,7 +12,10 @@
 
 ### Properties
 <% resource.properties.each do |property| %>
-* <%= property.name %> - <%= property.description %>
+* <%= property.name %>
+<% if property.description %>
+ * <%= property.description %>
+<% end %>
 <% property.options.each do |key, value| %>
  * <%= key %>: <%= value %>
 <% end %>

@@ -1,3 +1,6 @@
+## 0.1.7
+* Improve the description property visibility
+
 ## 0.1.6
 * Disable `<em>` feature of Redcarpet
 
