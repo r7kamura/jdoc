@@ -32,6 +32,8 @@ An app is a program to be deployed.
  * When this resource was deleted at
  * Example: `nil`
  * Type: null
+* user_ids
+ * Type: array
 * users
  * Type: array
 
@@ -57,6 +59,9 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
+  "user_ids": [
+    1
+  ],
   "users": [
     {
       "name": "alice"
@@ -82,6 +87,9 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
+  "user_ids": [
+    1
+  ],
   "users": [
     {
       "name": "alice"
@@ -107,6 +115,9 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
+  "user_ids": [
+    1
+  ],
   "users": [
     {
       "name": "alice"
@@ -133,6 +144,9 @@ Content-Type: application/json
     "name": "example",
     "private": false,
     "deleted_at": null,
+    "user_ids": [
+      1
+    ],
     "users": [
       {
         "name": "alice"
@@ -164,6 +178,9 @@ Content-Type: application/json
   "name": "example",
   "private": false,
   "deleted_at": null,
+  "user_ids": [
+    1
+  ],
   "users": [
     {
       "name": "alice"

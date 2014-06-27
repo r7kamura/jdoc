@@ -1,3 +1,6 @@
+## 0.1.8
+* Support property that is an array of primitive values
+
 ## 0.1.7
 * Support query string example in GET request
 * Improve the description property visibility

@@ -35,6 +35,11 @@ definitions:
         example: null
         type:
         - "null"
+      user_ids:
+        type: array
+        items:
+          type: integer
+          example: 1
     links:
     - description: Create a new app.
       href: "/apps"
@@ -82,6 +87,8 @@ definitions:
         "$ref": "#/definitions/app/definitions/private"
       deleted_at:
         "$ref": "#/definitions/app/definitions/deleted_at"
+      user_ids:
+        "$ref": "#/definitions/app/definitions/user_ids"
       users:
         type: array
         items:

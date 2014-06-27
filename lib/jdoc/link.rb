@@ -185,7 +185,11 @@ module Jdoc
             when value.type.include?("null")
               nil
             when value.type.include?("array")
-              [call(value.items.properties)]
+              if example = value.items.data["example"]
+                [example]
+              else
+                [call(value.items.properties)]
+              end
             else
               raise ExampleNotFound, "No example found for #{value.pointer}"
             end
