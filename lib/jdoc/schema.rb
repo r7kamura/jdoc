@@ -25,7 +25,9 @@ module Jdoc
     # @example
     #   schema.description #=> "A schema for a small example API."
     def description
-      @json_schema.description
+      if @json_schema.description
+        "#{@json_schema.description}\n\n"
+      end
     end
 
     # @return [String]
