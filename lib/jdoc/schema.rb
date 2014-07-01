@@ -21,6 +21,13 @@ module Jdoc
       @json_schema.title
     end
 
+    # @return [String, nil] Description property of this schema
+    # @example
+    #   schema.description #=> "A schema for a small example API."
+    def description
+      @json_schema.description
+    end
+
     # @return [String]
     # @example
     #   host_with_port #=> "api.example.com"
