@@ -1,5 +1,6 @@
 # Example API
 A schema for a small example API.
+
 * [App](#app)
  * [POST /apps](#post-apps)
  * [DELETE /apps/:id](#delete-appsid)
