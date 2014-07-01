@@ -1,3 +1,6 @@
+## 0.2.0
+* Show schema description on docs if exists
+
 ## 0.1.9
 * Support property that has no type
 
