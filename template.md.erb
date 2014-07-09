@@ -13,13 +13,7 @@
 
 ### Properties
 <% resource.properties.each do |property| %>
-* <%= property.name %>
-<% if property.description %>
- * <%= property.description %>
-<% end %>
-<% property.options.each do |key, value| %>
- * <%= key %>: <%= value %>
-<% end %>
+<%= property -%>
 <% end %>
 
 <% resource.links.each do |link| %>

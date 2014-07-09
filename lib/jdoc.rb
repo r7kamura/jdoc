@@ -1,4 +1,5 @@
 require "active_support/core_ext/object/to_query"
+require "active_support/core_ext/string/indent"
 require "active_support/core_ext/string/inflections"
 require "cgi"
 require "erubis"

@@ -199,6 +199,9 @@ Content-Type: application/json
  * Example: `"Sushi"`
 * user
  * Type: object
+ * name
+  * Example: `"alice"`
+  * Type: string
 
 ### GET /recipes
 List recipes
