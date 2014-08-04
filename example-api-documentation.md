@@ -7,6 +7,7 @@ A schema for a small example API.
  * [GET /apps/:id](#get-appsid)
  * [GET /apps](#get-apps)
  * [PATCH /apps/:id](#patch-appsid)
+ * [POST /apps/:id/files](#post-appsidfiles)
 * [Recipe](#recipe)
  * [GET /recipes](#get-recipes)
 * [User](#user)
@@ -173,6 +174,41 @@ Host: api.example.com
 
 ```
 HTTP/1.1 200
+Content-Type: application/json
+
+{
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "name": "example",
+  "private": false,
+  "deleted_at": null,
+  "user_ids": [
+    1
+  ],
+  "users": [
+    {
+      "name": "alice"
+    }
+  ]
+}
+```
+
+### POST /apps/:id/files
+Upload an attachment file for an app
+
+```
+POST /apps/:id/files HTTP/1.1
+Content-Type: multipart/form-data; boundary=---BoundaryX
+Host: api.example.com
+
+-----BoundaryX
+Content-Disposition: form-data; name="[file]"
+
+... contents of file ...
+-----BoundaryX--
+```
+
+```
+HTTP/1.1 201
 Content-Type: application/json
 
 {

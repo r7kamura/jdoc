@@ -28,7 +28,7 @@
 
 ```
 <%= link.method %> <%= link.path %><%= link.query_string %> HTTP/1.1
-<%= "Content-Type: application/json\n" if link.has_request_body? -%>
+<%= "Content-Type: #{link.content_type}\n" if link.has_request_body? -%>
 Host: <%= schema.host_with_port %>
 <%= "\n" + link.request_body if link.has_request_body? -%>
 ```

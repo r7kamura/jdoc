@@ -40,6 +40,11 @@ definitions:
         items:
           type: integer
           example: 1
+      file:
+        description: an attachment of app
+        example: '... contents of file ...'
+        readOnly: false
+        type: string
     links:
     - description: Create a new app.
       href: "/apps"
@@ -78,6 +83,18 @@ definitions:
         type:
         - object
       title: Update
+    - description: Upload an attachment file for an app
+      href: "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}/files"
+      method: POST
+      rel: create
+      encType: multipart/form-data
+      schema:
+        properties:
+          file:
+            "$ref": "#/definitions/app/definitions/file"
+        type:
+        - object
+      title: Create
     properties:
       id:
         "$ref": "#/definitions/app/definitions/id"

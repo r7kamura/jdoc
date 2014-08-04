@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "erubis"
   spec.add_dependency "json_schema"
+  spec.add_dependency "rack"
   spec.add_dependency "redcarpet"
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "pry"

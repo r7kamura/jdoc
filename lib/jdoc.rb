@@ -4,10 +4,12 @@ require "cgi"
 require "erubis"
 require "json_schema"
 require "redcarpet"
+require "rack"
 require "uri"
 
 require "jdoc/generator"
 require "jdoc/link"
+require 'jdoc/request/multipart'
 require "jdoc/property"
 require "jdoc/resource"
 require "jdoc/schema"

@@ -62,6 +62,14 @@ module Jdoc
       end
     end
 
+    # @return [String] request content type
+    # @note default value is "application/json"
+    def content_type
+      type = @raw_link.enc_type
+      type += "; #{Request::Multipart.boundary}" if content_type_multipart?
+      type
+    end
+
     # Adds query string if a link has a schema property and method is GET
     # @return [String, nil] A query string prefixed with `?` only to GET request
     # @example
@@ -74,7 +82,25 @@ module Jdoc
 
     # @return [String, nil] Example request body in JSON format
     def request_body
-      JSON.pretty_generate(request_parameters) + "\n"
+      body = case
+      when content_type_multipart?
+        request_body_in_multipart
+      when content_type_json?
+        request_body_in_json
+      else
+        ""
+      end
+      body + "\n"
+    end
+
+    # @return [true, false] True if encType of request is multipart/form-data
+    def content_type_multipart?
+      Rack::Mime.match?(@raw_link.enc_type, "multipart/form-data")
+    end
+
+    # @return [true, false] True if encType of request is multipart/form-data
+    def content_type_json?
+      Rack::Mime.match?(@raw_link.enc_type, "application/json")
     end
 
     # @return [Hash] Example request parameters for this endpoint
@@ -136,6 +162,16 @@ module Jdoc
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     def response_hash
       ResponseGenerator.call(response_schema.properties)
+    end
+
+    # @return [String, nil] Example request body in Multipart
+    def request_body_in_multipart
+      Request::Multipart.new(request_parameters).dump
+    end
+
+    # @return [String, nil] Example request body in JSON format
+    def request_body_in_json
+      JSON.pretty_generate(request_parameters)
     end
 
     # @return [Fixnum] Order score, used to sort links by preferred method order
