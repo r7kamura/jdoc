@@ -1,42 +1,7 @@
 module Jdoc
   class Generator
-    HTML_TEMPLATE_PATH = File.expand_path("../../../template.html.erb", __FILE__)
-    MARKDOWN_TEMPLATE_PATH = File.expand_path("../../../template.md.erb", __FILE__)
-
-    class << self
-      # @return [Erubis::Eruby]
-      def markdown_renderer
-        @markdown_renderer ||= Erubis::Eruby.new(markdown_template)
-      end
-
-      # @return [Erubis::Eruby]
-      def html_renderer
-        @html_renderer ||= Erubis::Eruby.new(html_template)
-      end
-
-      def redcarpet
-        @redcarpet ||= Redcarpet::Markdown.new(
-          Redcarpet::Render::HTML.new(
-            filter_html: true,
-            hard_wrap: true,
-            with_toc_data: true,
-          ),
-          autolink: true,
-          fenced_code_blocks: true,
-          no_intra_emphasis: true,
-        )
-      end
-
-      # @return [String] ERB template
-      def markdown_template
-        File.read(MARKDOWN_TEMPLATE_PATH)
-      end
-
-      # @return [String] ERB template
-      def html_template
-        File.read(HTML_TEMPLATE_PATH)
-      end
-    end
+    DEFAULT_HTML_TEMPLATE_PATH = File.expand_path("../../../template.html.erb", __FILE__)
+    DEFAULT_MARKDOWN_TEMPLATE_PATH = File.expand_path("../../../template.md.erb", __FILE__)
 
     # Utility wrapper for Jdoc::Generator#call
     # @return [String]
@@ -46,21 +11,26 @@ module Jdoc
 
     # @param schema [Hash] JSON Schema represented as a Hash
     # @param html [true, false] Pass true to render HTML docs
-    def initialize(schema, html: false)
+    # @param html_template_path [String] Path to ERB template to render HTML
+    # @param Markdown_template_path [String] Path to ERB template to render Markdown
+    def initialize(schema, html: false, html_template_path: nil, markdown_template_path: nil)
       @raw_schema = schema
       @html = html
+      @html_template_path = html_template_path
+      @markdown_template_path = markdown_template_path
     end
 
     # Generates Markdown or HTML documentation from JSON schema
     # @note Add some fix to adapt to GitHub anchor style
-    # @return [String]
+    # @return [String] Generated text
     def call
-      result = self.class.markdown_renderer.result(schema: schema)
+      markdown = markdown_renderer.result(schema: schema)
       if @html
-        result = self.class.html_renderer.result(body: self.class.redcarpet.render(result))
-        result.gsub(/id="(.+)"/) {|text| text.tr("/:", "") }
+        html = markdown_parser.render(markdown)
+        html =  html_renderer.result(body: html)
+        html.gsub(/id="(.+)"/) {|text| text.tr("/:", "") }
       else
-        result
+        markdown
       end
     rescue Jdoc::Link::ExampleNotFound => exception
       abort("Error: #{exception.to_s}")
@@ -68,10 +38,53 @@ module Jdoc
 
     private
 
+    # @return [Erubis::Eruby] Renderer to render HTML that takes HTML string
+    def html_renderer
+      Erubis::Eruby.new(html_template)
+    end
+
+    # @returns [String] Path to ERB template to render HTML
+    def html_template_path
+      @html_template_path || DEFAULT_HTML_TEMPLATE_PATH
+    end
+
+    def html_template
+      File.read(html_template_path)
+    end
+
+    # @return [Redcarpet::Markdown] Markdown parser to convert Markdown into HTML
+    def markdown_parser
+      Redcarpet::Markdown.new(
+        Redcarpet::Render::HTML.new(
+          filter_html: true,
+          hard_wrap: true,
+          with_toc_data: true,
+        ),
+        autolink: true,
+        fenced_code_blocks: true,
+        no_intra_emphasis: true,
+      )
+    end
+
+    # @return [Erubis::Eruby] Renderer to render Markdown that takes schema data
+    def markdown_renderer
+      Erubis::Eruby.new(markdown_template)
+    end
+
+    # @return [String] Content of specified Markdown template
+    def markdown_template
+      File.read(markdown_template_path)
+    end
+
+    # @return [String] Path to ERB template to render Markdown
+    def markdown_template_path
+      @markdown_template_path || DEFAULT_MARKDOWN_TEMPLATE_PATH
+    end
+
     # @return [Jdoc::Schema]
     # @raise [JsonSchema::SchemaError] Raises if given invalid JSON Schema
     def schema
-      @schema ||= Jdoc::Schema.new(@raw_schema)
+      Jdoc::Schema.new(@raw_schema)
     end
   end
 end
