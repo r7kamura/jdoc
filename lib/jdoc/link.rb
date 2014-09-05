@@ -63,11 +63,18 @@ module Jdoc
     end
 
     # @returns [String] Path with embedded example variable
+    # @raise [Rack::Spec::Mock::ExampleNotFound]
     # @example
     #   link.example_path #=> "GET /apps/1"
     def example_path
       @example_path ||= @raw_link.href.gsub(/{\((.+?)\)}/) do
-        JsonPointer.evaluate(root_schema.data, CGI.unescape($1))["example"]
+        pointer = CGI.unescape($1)
+        value = JsonPointer.evaluate(root_schema.data, pointer)
+        if value && value["example"]
+          value["example"]
+        else
+          raise ExampleNotFound, "No example found for #{pointer}"
+        end
       end
     end
 

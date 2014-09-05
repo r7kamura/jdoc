@@ -62,6 +62,8 @@ module Jdoc
       else
         result
       end
+    rescue Jdoc::Link::ExampleNotFound => exception
+      abort("Error: #{exception.to_s}")
     end
 
     private
