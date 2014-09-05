@@ -1,3 +1,7 @@
+## 0.3.2
+* Add generator options to change template
+* Add request parameters for each endpoint
+
 ## 0.3.1
 * Add error handling for ExampleNotFound
 
