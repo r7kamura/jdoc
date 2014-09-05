@@ -1,3 +1,6 @@
+## 0.3.3
+* Improve pattern format in properties section
+
 ## 0.3.2
 * Add generator options to change template
 * Add request parameters for each endpoint
