@@ -15,7 +15,7 @@ module Jdoc
         Example: example,
         Type: type,
         Format: format,
-        Patern: pattern,
+        Pattern: pattern,
         ReadOnly: read_only,
       }.reject {|key, value| value.nil? }
     end

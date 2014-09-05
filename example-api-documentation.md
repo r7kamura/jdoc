@@ -26,7 +26,7 @@ An app is a program to be deployed.
  * unique name of app
  * Example: `"example"`
  * Type: string
- * Patern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+ * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
 * private
  * true if this resource is private use
  * Example: `false`
