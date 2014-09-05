@@ -27,7 +27,7 @@
 <%= link.description %>
 
 ```
-<%= link.method %> <%= link.path %><%= link.query_string %> HTTP/1.1
+<%= link.method %> <%= link.example_path %><%= link.query_string %> HTTP/1.1
 <%= "Content-Type: #{link.content_type}\n" if link.has_request_body? -%>
 Host: <%= schema.host_with_port %>
 <%= "\n" + link.request_body if link.has_request_body? -%>
@@ -36,7 +36,7 @@ Host: <%= schema.host_with_port %>
 ```
 HTTP/1.1 <%= link.response_status %>
 <%= "Content-Type: application/json" if link.has_response_body? -%>
-<%= "\n" + link.response_body if link.has_response_body? -%>
+<%= "\n#{link.response_body}\n" if link.has_response_body? -%>
 ```
 
 <% end %>

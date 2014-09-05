@@ -57,8 +57,17 @@ module Jdoc
     # @example
     #   link.path #=> "GET /apps/:id"
     def path
-      @path ||= @raw_link.href.gsub(/{(.+?)}/) do |matched|
+      @path ||= @raw_link.href.gsub(/{(.+?)}/) do
         ":" + CGI.unescape($1).gsub(/[()\s]/, "").split("/").last
+      end
+    end
+
+    # @returns [String] Path with embedded example variable
+    # @example
+    #   link.example_path #=> "GET /apps/1"
+    def example_path
+      @example_path ||= @raw_link.href.gsub(/{\((.+?)\)}/) do
+        JsonPointer.evaluate(root_schema.data, CGI.unescape($1))["example"]
       end
     end
 
@@ -160,6 +169,17 @@ module Jdoc
     end
 
     private
+
+    # @return [JsonSchema::Schema] Root schema object this link is associated to
+    def root_schema
+      @root ||= begin
+        schema = @raw_link
+        while schema.parent
+          schema = schema.parent
+        end
+        schema
+      end
+    end
 
     # @return [true, false] True if a given link has a schema property
     def has_schema_in_link?

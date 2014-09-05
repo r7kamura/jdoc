@@ -56,7 +56,6 @@ Host: api.example.com
 ```
 HTTP/1.1 201
 Content-Type: application/json
-
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -77,42 +76,25 @@ Content-Type: application/json
 Delete an existing app.
 
 ```
-DELETE /apps/:id HTTP/1.1
+DELETE /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
 Host: api.example.com
 ```
 
 ```
-HTTP/1.1 200
-Content-Type: application/json
-
-{
-  "id": "01234567-89ab-cdef-0123-456789abcdef",
-  "name": "example",
-  "private": false,
-  "deleted_at": null,
-  "user_ids": [
-    1
-  ],
-  "users": [
-    {
-      "name": "alice"
-    }
-  ]
-}
+HTTP/1.1 204
 ```
 
 ### GET /apps/:id
 Info for existing app.
 
 ```
-GET /apps/:id HTTP/1.1
+GET /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
 Host: api.example.com
 ```
 
 ```
 HTTP/1.1 200
 Content-Type: application/json
-
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -140,7 +122,6 @@ Host: api.example.com
 ```
 HTTP/1.1 200
 Content-Type: application/json
-
 [
   {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
@@ -163,7 +144,7 @@ Content-Type: application/json
 Update an existing app.
 
 ```
-PATCH /apps/:id HTTP/1.1
+PATCH /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
 Content-Type: application/json
 Host: api.example.com
 
@@ -175,7 +156,6 @@ Host: api.example.com
 ```
 HTTP/1.1 200
 Content-Type: application/json
-
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -196,7 +176,7 @@ Content-Type: application/json
 Upload an attachment file for an app
 
 ```
-POST /apps/:id/files HTTP/1.1
+POST /apps/01234567-89ab-cdef-0123-456789abcdef/files HTTP/1.1
 Content-Type: multipart/form-data; boundary=---BoundaryX
 Host: api.example.com
 
@@ -210,7 +190,6 @@ Content-Disposition: form-data; name="[file]"
 ```
 HTTP/1.1 201
 Content-Type: application/json
-
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -247,7 +226,6 @@ Host: api.example.com
 ```
 HTTP/1.1 200
 Content-Type: application/json
-
 [
   {
     "name": "Sushi",
