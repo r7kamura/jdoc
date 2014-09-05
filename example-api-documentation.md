@@ -26,7 +26,7 @@ An app is a program to be deployed.
  * unique name of app
  * Example: `"example"`
  * Type: string
- * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+ * Pattern: `/^[a-z][a-z0-9-]{3,50}$/`
 * private
  * true if this resource is private use
  * Example: `false`
@@ -47,7 +47,7 @@ Create a new app.
  * unique name of app
  * Example: `"example"`
  * Type: string
- * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+ * Pattern: `/^[a-z][a-z0-9-]{3,50}$/`
 
 ```
 POST /apps HTTP/1.1
@@ -153,7 +153,7 @@ Update an existing app.
  * unique name of app
  * Example: `"example"`
  * Type: string
- * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+ * Pattern: `/^[a-z][a-z0-9-]{3,50}$/`
 
 ```
 PATCH /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1

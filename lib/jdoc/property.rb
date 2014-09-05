@@ -35,7 +35,7 @@ module Jdoc
     # @return [String, nil] Pattern constraint, defined in pattern property
     def pattern
       if str = @schema.pattern
-        "`#{str}`"
+        "`#{str.inspect}`"
       end
     end
 
