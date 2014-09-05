@@ -119,6 +119,12 @@ module Jdoc
       ["PATCH", "POST", "PUT"].include?(method)
     end
 
+    # We have a policy that we should not return response body to PUT and DELETE requests.
+    # @return [true, false] True if this endpoint must have response body
+    def has_response_body?
+      !["PUT", "DELETE"].include?(method)
+    end
+
     # @return [String] JSON response body generated from example properties
     def response_body
       object = has_list_data? ? [response_hash] : response_hash
@@ -127,7 +133,14 @@ module Jdoc
 
     # @return [Fixnum] Preferred respone status code for this endpoint
     def response_status
-      method == "POST" ? 201 : 200
+      case method
+      when "POST"
+        201
+      when "PUT", "DELETE"
+        204
+      else
+        200
+      end
     end
 
     # @return [JsonSchema::Schema] Response schema for this link
