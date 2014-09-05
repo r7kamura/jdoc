@@ -122,10 +122,23 @@ module Jdoc
     # @return [Hash] Example request parameters for this endpoint
     def request_parameters
       @request_parameters ||= begin
-        if has_schema_in_link?
+        if request_schema
           RequestGenerator.call(request_schema.properties)
         else
           {}
+        end
+      end
+    end
+
+    # @return [Array<Jdoc::Property>] Properties defined in this link's schema property.
+    def request_properties
+      @request_properties ||= begin
+        if request_schema
+          request_schema.properties.map do |name, schema|
+            Property.new(name: name, schema: schema)
+          end
+        else
+          []
         end
       end
     end
@@ -166,7 +179,7 @@ module Jdoc
 
     # @return [JsonSchema::Schema] Request schema for this link
     def request_schema
-      @raw_link.schema || @raw_link.parent
+      @raw_link.schema
     end
 
     # @return [Json::Link::Resource]
@@ -186,11 +199,6 @@ module Jdoc
         end
         schema
       end
-    end
-
-    # @return [true, false] True if a given link has a schema property
-    def has_schema_in_link?
-      !!@raw_link.schema
     end
 
     # @return [true, false] True if response is intended to be list data

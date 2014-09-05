@@ -43,6 +43,12 @@ An app is a program to be deployed.
 ### POST /apps
 Create a new app.
 
+* name
+ * unique name of app
+ * Example: `"example"`
+ * Type: string
+ * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+
 ```
 POST /apps HTTP/1.1
 Content-Type: application/json
@@ -143,6 +149,12 @@ Content-Type: application/json
 ### PATCH /apps/:id
 Update an existing app.
 
+* name
+ * unique name of app
+ * Example: `"example"`
+ * Type: string
+ * Pattern: `(?-mix:^[a-z][a-z0-9-]{3,50}$)`
+
 ```
 PATCH /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
 Content-Type: application/json
@@ -174,6 +186,11 @@ Content-Type: application/json
 
 ### POST /apps/:id/files
 Upload an attachment file for an app
+
+* file
+ * an attachment of app
+ * Example: `"... contents of file ..."`
+ * Type: string
 
 ```
 POST /apps/01234567-89ab-cdef-0123-456789abcdef/files HTTP/1.1
