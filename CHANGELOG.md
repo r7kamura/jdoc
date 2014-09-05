@@ -1,3 +1,6 @@
+## 0.3.1
+* Add error handling for ExampleNotFound
+
 ## 0.3.0
 * Change example response status and body to PUT & DELETE requests
 * Improve request path example by resolving variable in path
