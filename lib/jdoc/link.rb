@@ -145,7 +145,7 @@ module Jdoc
 
     # @return [true, false] True if this endpoint must have request body
     def has_request_body?
-      ["PATCH", "POST", "PUT"].include?(method)
+      ["PATCH", "POST", "PUT"].include?(method) && !request_parameters.empty?
     end
 
     # We have a policy that we should not return response body to PUT and DELETE requests.
