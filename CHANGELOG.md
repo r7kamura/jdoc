@@ -1,3 +1,6 @@
+## 0.3.4
+* Treat empty request parameters as no request body
+
 ## 0.3.3
 * Improve pattern format in properties section
 
