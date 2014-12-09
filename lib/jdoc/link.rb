@@ -162,13 +162,13 @@ module Jdoc
 
     # @return [Fixnum] Preferred respone status code for this endpoint
     def response_status
-      case method
-      when "POST"
+      case
+      when method == "POST"
         201
-      when "PUT", "DELETE"
-        204
-      else
+      when has_response_body?
         200
+      else
+        204
       end
     end
 
