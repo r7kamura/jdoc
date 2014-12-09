@@ -151,7 +151,7 @@ module Jdoc
     # We have a policy that we should not return response body to PUT and DELETE requests.
     # @return [true, false] True if this endpoint must have response body
     def has_response_body?
-      !["PUT", "DELETE"].include?(method)
+      @raw_link.media_type != "null"
     end
 
     # @return [String] JSON response body generated from example properties

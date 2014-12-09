@@ -62,6 +62,7 @@ definitions:
       method: DELETE
       rel: destroy
       title: Delete
+      mediaType: 'null'
     - description: Info for existing app.
       href: "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}"
       method: GET
