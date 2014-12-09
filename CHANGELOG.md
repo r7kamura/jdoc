@@ -1,3 +1,6 @@
+## 0.4.1
+* Use 204 for `mediaType: "null"`
+
 ## 0.4.0
 * Recognize `mediaType: 'null'` as "No response body"
 
