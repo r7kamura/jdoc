@@ -1,3 +1,6 @@
+## 0.4.0
+* Recognize `mediaType: 'null'` as "No response body"
+
 ## 0.3.4
 * Treat empty request parameters as no request body
 
