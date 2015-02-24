@@ -46,9 +46,9 @@ Host: <%= schema.host_with_port %>
 ```
 
 ```
-HTTP/1.1 <%= link.response_status %>
+HTTP/1.1 <%= link.response_status %> <%= link.response_reason_phrase %>
 <%= "Content-Type: application/json" if link.has_response_body? -%>
-<%= "\n#{link.response_body}\n" if link.has_response_body? -%>
+<%= "\n\n#{link.response_body}\n" if link.has_response_body? -%>
 ```
 
 <% end %>
