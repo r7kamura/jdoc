@@ -172,6 +172,18 @@ module Jdoc
       end
     end
 
+    # @return [String] Preferred respone reason phrase for this endpoint
+    def response_reason_phrase
+      case
+      when method == "POST"
+        "Created"
+      when has_response_body?
+        "OK"
+      else
+        "No Content"
+      end
+    end
+
     # @return [JsonSchema::Schema] Response schema for this link
     def response_schema
       @raw_link.target_schema || @raw_link.parent

@@ -60,8 +60,9 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 201
+HTTP/1.1 201 Created
 Content-Type: application/json
+
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -87,7 +88,7 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 204
+HTTP/1.1 204 No Content
 ```
 
 ### GET /apps/:id
@@ -99,8 +100,9 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type: application/json
+
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -126,8 +128,9 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type: application/json
+
 [
   {
     "id": "01234567-89ab-cdef-0123-456789abcdef",
@@ -166,8 +169,9 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type: application/json
+
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -205,8 +209,9 @@ Content-Disposition: form-data; name="[file]"
 ```
 
 ```
-HTTP/1.1 201
+HTTP/1.1 201 Created
 Content-Type: application/json
+
 {
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "example",
@@ -241,8 +246,9 @@ Host: api.example.com
 ```
 
 ```
-HTTP/1.1 200
+HTTP/1.1 200 OK
 Content-Type: application/json
+
 [
   {
     "name": "Sushi",
