@@ -1,3 +1,6 @@
+## 0.4.2
+- Show reason phrase in response example (Thx @minodisk)
+
 ## 0.4.1
 - Use 204 for `mediaType: "null"`
 
