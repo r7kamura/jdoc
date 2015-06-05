@@ -55,7 +55,7 @@ module Jdoc
     # @return [String] Request path name, defined at href property
     # @note URI Template is replaced with placeholder
     # @example
-    #   link.path #=> "GET /apps/:id"
+    #   link.path #=> "/apps/:id"
     def path
       @path ||= @raw_link.href.gsub(/{(.+?)}/) do
         ":" + CGI.unescape($1).gsub(/[()\s]/, "").split("/").last
@@ -65,7 +65,7 @@ module Jdoc
     # @returns [String] Path with embedded example variable
     # @raise [Rack::Spec::Mock::ExampleNotFound]
     # @example
-    #   link.example_path #=> "GET /apps/1"
+    #   link.example_path #=> "/apps/1"
     def example_path
       @example_path ||= @raw_link.href.gsub(/{\((.+?)\)}/) do
         pointer = CGI.unescape($1)
