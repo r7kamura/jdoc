@@ -34,8 +34,8 @@ else
 end
 
 puts Jdoc::Generator.call(
-       schema,
-       html: options[:html],
-       html_template_path: options[:html_template_path],
-       markdown_template_path: options[:markdown_template_path]
-     )
+  schema,
+  html: options[:html],
+  html_template_path: options[:html_template_path],
+  markdown_template_path: options[:markdown_template_path],
+)
