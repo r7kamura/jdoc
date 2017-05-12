@@ -2,9 +2,26 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "jdoc"
 require "yaml"
+require "optparse"
+
+opt = OptionParser.new
+banner = 'Usage: jdoc <schema.json or schema.yml> [options]'
+opt.banner = banner
+Version = Jdoc::VERSION
+options = {
+  html: false,
+  html_template_path: nil,
+  markdown_template_path: nil
+}
+
+opt.on("--html") { |_| options[:html] = true }
+opt.on("--html-template-path ERB_FILE") { |v| options[:html_template_path] = v }
+opt.on("--markdown-template-path ERB_FILE") { |v| options[:markdown_template_path] = v }
+
+opt.parse!(ARGV)
 
 unless path = ARGV[0]
-  puts "usage: #{$0} <schema.json or schema.yml>"
+  puts banner
   exit
 end
 
@@ -16,4 +33,9 @@ else
   schema = JSON.parse(str)
 end
 
-puts Jdoc::Generator.call(schema)
+puts Jdoc::Generator.call(
+       schema,
+       html: options[:html],
+       html_template_path: options[:html_template_path],
+       markdown_template_path: options[:markdown_template_path]
+     )
