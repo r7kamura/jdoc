@@ -1,3 +1,7 @@
+## 0.4.3
+
+- Add some CLI options (Thx @k1LoW)
+
 ## 0.4.2
 
 - Show reason phrase in response example (Thx @minodisk)
