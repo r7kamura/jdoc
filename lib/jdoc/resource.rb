@@ -2,8 +2,15 @@ module Jdoc
   class Resource
     attr_reader :schema
 
+    class TitleNotFound < StandardError
+    end
+
     # @param schema [JsonSchema::Schema]
     def initialize(schema)
+      if schema.title.nil?
+        raise TitleNotFound
+      end
+
       @schema = schema
     end
 

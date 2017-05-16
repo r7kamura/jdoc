@@ -19,5 +19,15 @@ describe Jdoc::Generator do
     it "returns a String of API documentation in Markdown from given JSON Schema" do
       should == File.read(File.expand_path("../../../example-api-documentation.md", __FILE__))
     end
+
+    context "schema without title" do
+      let(:schema_path) do
+        File.expand_path("../../fixtures/schema-without-title.yml", __FILE__)
+      end
+
+      it "raises TitleNotFound" do
+        expect { subject }.to raise_error Jdoc::Resource::TitleNotFound
+      end
+    end
   end
 end
