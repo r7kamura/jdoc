@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  rspec:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
