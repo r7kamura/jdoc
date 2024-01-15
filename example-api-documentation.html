@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API Docs</title>
+  <style>
+    body {
+      width: 920px;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+
+    a {
+      color: #4183C4;
+    }
+
+    pre {
+      color: #393939;
+      background-color: #fafafb;
+      padding: 10px;
+      margin: 2em 0;
+      border: 1px solid #cacaca;
+      border-radius: 3px;
+      font: 12px/1.4em Consolas, 'Liberation Mono', Courier, monospace;
+      overflow: auto;
+    }
+
+    ol code,
+    ul code,
+    p code {
+      font-size: 12px;
+      margin: 0;
+      border: 1px solid #ddd;
+      background-color: #f8f8f8;
+      border-radius: 3px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+<h1 id="example-api">Example API</h1>
+
+<p>A schema for a small example API.</p>
+
+<ul>
+<li><a href="#app">App</a>
+
+<ul>
+<li><a href="#post-apps">POST /apps</a></li>
+<li><a href="#delete-appsid">DELETE /apps/:id</a></li>
+<li><a href="#get-appsid">GET /apps/:id</a></li>
+<li><a href="#get-apps">GET /apps</a></li>
+<li><a href="#patch-appsid">PATCH /apps/:id</a></li>
+<li><a href="#post-appsidfiles">POST /apps/:id/files</a></li>
+</ul></li>
+<li><a href="#recipe">Recipe</a>
+
+<ul>
+<li><a href="#get-recipes">GET /recipes</a></li>
+</ul></li>
+<li><a href="#user">User</a></li>
+</ul>
+
+<h2 id="app">App</h2>
+
+<p>An app is a program to be deployed.</p>
+
+<h3 id="properties">Properties</h3>
+
+<ul>
+<li>id
+
+<ul>
+<li>unique identifier of app</li>
+<li>Example: <code>&quot;01234567-89ab-cdef-0123-456789abcdef&quot;</code></li>
+<li>Type: string</li>
+<li>Format: uuid</li>
+<li>ReadOnly: true</li>
+</ul></li>
+<li>name
+
+<ul>
+<li>unique name of app</li>
+<li>Example: <code>&quot;example&quot;</code></li>
+<li>Type: string</li>
+<li>Pattern: <code>/^[a-z][a-z0-9-]{3,50}$/</code></li>
+</ul></li>
+<li>private
+
+<ul>
+<li>true if this resource is private use</li>
+<li>Example: <code>false</code></li>
+<li>Type: boolean</li>
+</ul></li>
+<li>deleted_at
+
+<ul>
+<li>When this resource was deleted at</li>
+<li>Example: <code>nil</code></li>
+<li>Type: null</li>
+</ul></li>
+<li>user_ids
+
+<ul>
+<li>Type: array</li>
+</ul></li>
+<li>users
+
+<ul>
+<li>Type: array</li>
+</ul></li>
+</ul>
+
+<h3 id="post-apps">POST /apps</h3>
+
+<p>Create a new app.</p>
+
+<ul>
+<li>name
+
+<ul>
+<li>unique name of app</li>
+<li>Example: <code>&quot;example&quot;</code></li>
+<li>Type: string</li>
+<li>Pattern: <code>/^[a-z][a-z0-9-]{3,50}$/</code></li>
+</ul></li>
+</ul>
+
+<pre><code>POST /apps HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+
+{
+  &quot;name&quot;: &quot;example&quot;
+}
+</code></pre>
+
+<pre><code>HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  &quot;id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;private&quot;: false,
+  &quot;deleted_at&quot;: null,
+  &quot;user_ids&quot;: [
+    1
+  ],
+  &quot;users&quot;: [
+    {
+      &quot;name&quot;: &quot;alice&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h3 id="delete-apps-id">DELETE /apps/:id</h3>
+
+<p>Delete an existing app.</p>
+
+<pre><code>DELETE /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
+Host: api.example.com
+</code></pre>
+
+<pre><code>HTTP/1.1 204 No Content
+</code></pre>
+
+<h3 id="get-apps-id">GET /apps/:id</h3>
+
+<p>Info for existing app.</p>
+
+<pre><code>GET /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
+Host: api.example.com
+</code></pre>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  &quot;id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;private&quot;: false,
+  &quot;deleted_at&quot;: null,
+  &quot;user_ids&quot;: [
+    1
+  ],
+  &quot;users&quot;: [
+    {
+      &quot;name&quot;: &quot;alice&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h3 id="get-apps">GET /apps</h3>
+
+<p>List existing apps.</p>
+
+<pre><code>GET /apps HTTP/1.1
+Host: api.example.com
+</code></pre>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    &quot;id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+    &quot;name&quot;: &quot;example&quot;,
+    &quot;private&quot;: false,
+    &quot;deleted_at&quot;: null,
+    &quot;user_ids&quot;: [
+      1
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;name&quot;: &quot;alice&quot;
+      }
+    ]
+  }
+]
+</code></pre>
+
+<h3 id="patch-apps-id">PATCH /apps/:id</h3>
+
+<p>Update an existing app.</p>
+
+<ul>
+<li>name
+
+<ul>
+<li>unique name of app</li>
+<li>Example: <code>&quot;example&quot;</code></li>
+<li>Type: string</li>
+<li>Pattern: <code>/^[a-z][a-z0-9-]{3,50}$/</code></li>
+</ul></li>
+</ul>
+
+<pre><code>PATCH /apps/01234567-89ab-cdef-0123-456789abcdef HTTP/1.1
+Content-Type: application/json
+Host: api.example.com
+
+{
+  &quot;name&quot;: &quot;example&quot;
+}
+</code></pre>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  &quot;id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;private&quot;: false,
+  &quot;deleted_at&quot;: null,
+  &quot;user_ids&quot;: [
+    1
+  ],
+  &quot;users&quot;: [
+    {
+      &quot;name&quot;: &quot;alice&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h3 id="post-apps-id-files">POST /apps/:id/files</h3>
+
+<p>Upload an attachment file for an app</p>
+
+<ul>
+<li>file
+
+<ul>
+<li>an attachment of app</li>
+<li>Example: <code>&quot;... contents of file ...&quot;</code></li>
+<li>Type: string</li>
+</ul></li>
+</ul>
+
+<pre><code>POST /apps/01234567-89ab-cdef-0123-456789abcdef/files HTTP/1.1
+Content-Type: multipart/form-data; boundary=---BoundaryX
+Host: api.example.com
+
+-----BoundaryX
+Content-Disposition: form-data; name=&quot;[file]&quot;
+
+... contents of file ...
+
+-----BoundaryX--
+</code></pre>
+
+<pre><code>HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  &quot;id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;private&quot;: false,
+  &quot;deleted_at&quot;: null,
+  &quot;user_ids&quot;: [
+    1
+  ],
+  &quot;users&quot;: [
+    {
+      &quot;name&quot;: &quot;alice&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h2 id="recipe">Recipe</h2>
+
+<h3 id="properties">Properties</h3>
+
+<ul>
+<li>name
+
+<ul>
+<li>Example: <code>&quot;Sushi&quot;</code></li>
+</ul></li>
+<li>user
+
+<ul>
+<li>Type: object</li>
+</ul></li>
+</ul>
+
+<h3 id="get-recipes">GET /recipes</h3>
+
+<p>List recipes</p>
+
+<pre><code>GET /recipes HTTP/1.1
+Host: api.example.com
+</code></pre>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    &quot;name&quot;: &quot;Sushi&quot;,
+    &quot;user&quot;: {
+      &quot;name&quot;: &quot;alice&quot;
+    }
+  }
+]
+</code></pre>
+
+<h2 id="user">User</h2>
+
+<h3 id="properties">Properties</h3>
+
+<ul>
+<li>name
+
+<ul>
+<li>Example: <code>&quot;alice&quot;</code></li>
+<li>Type: string</li>
+</ul></li>
+</ul>
+
+</body>
+</html>

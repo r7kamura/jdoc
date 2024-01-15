@@ -19,5 +19,15 @@ describe Jdoc::Generator do
     it "returns a String of API documentation in Markdown from given JSON Schema" do
       should == File.read(File.expand_path("../../../example-api-documentation.md", __FILE__))
     end
+
+    context "with html: true" do
+      subject do
+        described_class.call(schema, html: true)
+      end
+
+      it "returns a String of API documentation in HTML from given JSON Schema" do
+        should == File.read(File.expand_path("../../../example-api-documentation.html", __FILE__))
+      end
+    end
   end
 end
