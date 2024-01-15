@@ -1,4 +1,7 @@
 # Jdoc
+
+[![CI](https://github.com/r7kamura/jdoc/actions/workflows/ci.yml/badge.svg)](https://github.com/r7kamura/jdoc/actions/workflows/ci.yml)
+
 Generate API documentation from JSON Schema.
 
 ## Install
