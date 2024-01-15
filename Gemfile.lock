@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jdoc (0.4.3)
+    jdoc (0.4.4)
       activesupport
       erubis
       json_schema
