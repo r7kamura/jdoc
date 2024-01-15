@@ -5,8 +5,8 @@ module Jdoc
 
     # Utility wrapper for Jdoc::Generator#call
     # @return [String]
-    def self.call(*args)
-      new(*args).call
+    def self.call(*args, **kwargs)
+      new(*args, **kwargs).call
     end
 
     # @param schema [Hash] JSON Schema represented as a Hash
