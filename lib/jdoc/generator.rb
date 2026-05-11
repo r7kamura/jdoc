@@ -24,10 +24,10 @@ module Jdoc
     # @note Add some fix to adapt to GitHub anchor style
     # @return [String] Generated text
     def call
-      markdown = markdown_renderer.result(schema: schema)
+      markdown = render_erb(markdown_template, schema: schema)
       if @html
         html = markdown_parser.render(markdown)
-        html =  html_renderer.result(body: html)
+        html = render_erb(html_template, body: html)
         html.gsub(/id="(.+)"/) {|text| text.tr("/:", "") }
       else
         markdown
@@ -38,9 +38,11 @@ module Jdoc
 
     private
 
-    # @return [Erubis::Eruby] Renderer to render HTML that takes HTML string
-    def html_renderer
-      Erubis::Eruby.new(html_template)
+    # @return [String]
+    def render_erb(template, **variables)
+      b = binding
+      variables.each { |k, v| b.local_variable_set(k, v) }
+      eval(Erubi::Engine.new(template).src, b)
     end
 
     # @returns [String] Path to ERB template to render HTML
@@ -64,11 +66,6 @@ module Jdoc
         fenced_code_blocks: true,
         no_intra_emphasis: true,
       )
-    end
-
-    # @return [Erubis::Eruby] Renderer to render Markdown that takes schema data
-    def markdown_renderer
-      Erubis::Eruby.new(markdown_template)
     end
 
     # @return [String] Content of specified Markdown template

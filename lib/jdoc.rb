@@ -1,7 +1,7 @@
 require "active_support/core_ext/object/to_query"
 require "active_support/core_ext/string/inflections"
 require "cgi"
-require "erubis"
+require "erubi"
 require "json_schema"
 require "redcarpet"
 require "rack"
