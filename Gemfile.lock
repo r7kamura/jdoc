@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jdoc (0.5.0)
+    jdoc (0.6.0)
       activesupport
       erubi
       json_schema
