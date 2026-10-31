@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Generate API documentation from JSON Schema."
   spec.homepage      = "https://github.com/r7kamura/jdoc"
   spec.license       = "MIT"
+  spec.required_ruby_version = ">= 3.3"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
